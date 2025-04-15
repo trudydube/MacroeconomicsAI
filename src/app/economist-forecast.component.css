@@ -1,0 +1,564 @@
+.policy-recommendation_16-4 {
+    display: flex;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, #3fc2d0 0%, #ffffff 100%);
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  .navbar {
+    top: 143px;
+    left: 0px;
+    position: absolute;
+    display: flex;
+    display: flex;
+  }
+  
+  .text-botswana {
+    top: 35px;
+    left: 282px;
+    position: absolute;
+    display: flex;
+    color: #ffffff;
+    letter-spacing: 0%;
+    font-weight: bold;
+    font-size: xx-large;
+    text-align: left;
+    width: 708px;
+    height: 99px;
+  }
+  
+  .text-macro-model {
+    top: 50px;
+    padding-top: 30px;
+    left: 282px;
+    position: absolute;
+    display: flex;
+    color: #ffffff;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-size: larger;
+    text-align: left;
+    width: 708px;
+    height: 99px;
+  }
+  
+  .text-forecasting {
+    top: 30px;
+    padding-top: 30px;
+    left: 700px;
+    position: absolute;
+    display: flex;
+    color: #ffffff;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-size: 25px;
+    text-align: left;
+    width: 708px;
+    height: 99px;
+  }
+  
+  
+  .loading-bar-container {
+    position: absolute;
+    top: 870px;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-color: #3fc2d0;
+    z-index: 9999;
+  }
+  
+  .loading-bar {
+    height: 100%;
+    width: 0;
+    background-color: #f3f3f3;
+    animation: loading 3s infinite;
+  }
+  
+  .loading-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: #3fc2d0;
+    text-align: center;
+    z-index: 9999;
+  }
+  
+  
+  @keyframes loading {
+    0% { width: 0%; }
+    50% { width: 50%; }
+    100% { width: 100%; }
+  }
+  
+  
+  
+  .policy-output {
+    width: 90%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: #CCCCCC;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: auto;
+    top: 949px;
+    left: 46px;
+    position: absolute;
+    flex-direction: column;
+    color: #000000;
+    font-family: Glegoo;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    z-index: 9999;
+    
+  }
+  
+  .how-to-use{ 
+    top: 950px;
+    left: 46px;
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: 50;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-family: Glegoo;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: left;
+    width: 1290px;
+    height: 801px;
+    font-size: 20px;
+    line-height: 2.0;
+  }
+  
+  
+  
+  .policy-output th, .policy-output td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .policy-output th {
+    background-color: #3FC2D0;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .policy-output tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .policy-output tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+  
+  .policy-output img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 900px;
+    margin-bottom: 20px;
+    left: 30px;
+  }
+  
+  .flag {
+    top: 18px;
+    left: 18px;
+    position: absolute;
+    display: flex;
+    display: flex;
+  }
+  
+  .text-home_16-14 {
+    top: 185px;
+    left: 100px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 24px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 201px;
+    height: 47px;
+  }
+  
+  .text-historical-data_16-14 {
+    top: 185px;
+    left: 380px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 24px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 201px;
+    height: 47px;
+  }
+  
+  .text-reports_16-15 {
+    top: 185px;
+    left: 720px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 24px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 127px;
+    height: 47px;
+  }
+  
+  .text-policy-recommendation_16-22 {
+    top: 185px;
+    left: 800px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 24px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 285px;
+    height: 47px;
+  }
+  
+  .text-forecasting_16-24 {
+    top: 185px;
+    left: 1000px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 24px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 187px;
+    height: 47px;
+  }
+  
+  .text-scenario-analysis_16-26 {
+    top: 185px;
+    left: 1300px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 24px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 225px;
+    height: 47px;
+  }
+  
+  .copyright {
+    top: 3750px;
+    left: 0px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0px;
+    
+  }
+  
+  .text-copyright---2025--all-rights-reserved_16-18 {
+    top: 3770px;
+    left: 32px;
+    position: absolute;
+    display: flex;
+    color: #ffffff;
+    font-size: 20px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: left;
+    width: 100vw;
+    height: 50px;
+  }
+  
+  .login-button_16-28 {
+    top: 35px;
+    left: 1300px;
+    position: absolute;
+    display: flex;
+    width: 186px;
+    height: 59px;
+  }
+  .rectangle-2_16-29 {
+    display: flex;
+  }
+  
+  .text-logout_16-30 {
+    color: #000000;
+    font-size: 32px;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 700;
+    text-align: center;
+    width: 163px;
+    height: 27px;
+  }
+  
+  .upload-dataset {
+    top: 368px;
+    left: 110px;
+    position: absolute;
+    display: flex;
+    cursor: pointer;
+    transition: background-color 0.3s;  
+  }
+
+  .upload-model {
+    top: 368px;
+    left: 797px;
+    position: absolute;
+    display: flex;
+    cursor: pointer;
+    transition: background-color 0.3s;  
+  }
+
+  .upload-dataset:hover,
+  .upload-dataset.dragover,
+  .upload-model:hover,
+  .upload-model.dragover {
+    background-color: #3fd04e;
+    opacity: 40%;
+    border-color: #3fd04e;
+    z-index: 9999;  
+  }
+  
+  .text-drop-files-here_16-49 {
+    top: 428px;
+    left: 260px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 28px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 266px;
+    height: 49px;
+  }
+  
+  .text-or_16-50 {
+    top: 496px;
+    left: 330px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 28px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 105px;
+    height: 41px;
+  }
+  
+  
+  .browse-dataset {
+    top: 574px;
+    left: 193px;
+    position: absolute;
+    display: flex;
+    display: flex;
+  }
+  
+  .text-browse_16-52 {
+    top: 589px;
+    left: 297px;
+    position: absolute;
+    display: flex;
+    color: #ffffff;
+    font-size: 28px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 183px;
+    height: 40px;
+  }
+  
+  .text-drop-files-here_16-55 {
+    top: 428px;
+    left: 950px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 28px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 266px;
+    height: 49px;
+  }
+  
+  .text-or_16-56 {
+    top: 496px;
+    left: 1020px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 28px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 105px;
+    height: 41px;
+  }
+  
+  .browse {
+    top: 574px;
+    left: 880px;
+    position: absolute;
+    display: flex;
+    display: flex;
+  }
+  
+  .text-browse_16-58 {
+    top: 589px;
+    left: 990px;
+    position: absolute;
+    display: flex;
+    color: #ffffff;
+    font-size: 28px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 183px;
+    height: 40px;
+  }
+  
+  
+  
+  .text-upload-dataset_16-60 {
+    top: 318px;
+    left: 250px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 28px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 345px;
+    height: 45px;
+  }
+  
+  .text-upload-model_16-61 {
+    top: 318px;
+    left: 950px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 28px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 345px;
+    height: 45px;
+  }
+  
+  .generate-policy-button {
+    top: 771px;
+    left: 509px;
+    position: absolute;
+    display: flex;
+    display: flex;
+  }
+  
+  
+  .rectangle-8_16-63.button {
+    top: 771px;
+    left: 509px;
+    position: absolute;
+    display: flex;
+    display: flex;
+  }
+  
+  button:hover{
+    color: #f2f2f2;
+  }
+  
+  .text-generate-policies_16-64 {
+    top: 793px;
+    left: 561px;
+    position: absolute;
+    display: flex;
+    color: #ffffff;
+    font-size: 28px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 700;
+    text-align: left;
+    width: 270px;
+    height: 47px;
+  }
+  
+  .file-format {
+    top: 3400px;
+    left: 0px;
+    position: absolute;
+    border: #000000;
+    display: flex;
+  }
+  
+  .text-file-format-for-in-built-model-a-tab-separated-csv-or-txt-file-with-the-following-columns--year--gdp--unemployment-rate--inflation-rate--economic-growth--q-on-q-economic-growth--income-and-wealth-distribution--net-exports--govt-expenditure--tax-revenue--money-supply--interest-rate--exchange-rate-of-crawl_19-66 {
+    top: 3450px;
+    left: 32px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 28px;
+    letter-spacing: 0%;
+    text-decoration: none;
+    text-align: left;
+    width: 599px;
+    height: 532px;
+  }
+  

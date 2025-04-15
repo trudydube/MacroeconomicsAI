@@ -1,0 +1,172 @@
+.landing-page_4-14 {
+  position: relative;
+  box-sizing: border-box;
+
+  background: linear-gradient(180deg, #3fc2d0 0%, #ffffff 100%);
+  width: 100vw; 
+  height: 100vh; 
+}
+.rectangle-1_1-14 {
+  top: 143px;
+  left: 0px;
+  position: absolute;
+  display: flex;
+  display: flex;
+}
+
+.text-botswana {
+  top: 35px;
+  left: 282px;
+  position: absolute;
+  display: flex;
+  color: #ffffff;
+  letter-spacing: 0%;
+  font-weight: bold;
+  font-size: xx-large;
+  text-align: left;
+  width: 708px;
+  height: 99px;
+}
+
+.text-macro-model {
+  top: 50px;
+  padding-top: 30px;
+  left: 282px;
+  position: absolute;
+  display: flex;
+  color: #ffffff;
+  letter-spacing: 0%;
+  text-decoration: none;
+  font-size: larger;
+  text-align: left;
+  width: 708px;
+  height: 99px;
+}
+
+.ellipse-1_1-9 {
+  top: 18px;
+  left: 18px;
+  position: absolute;
+  display: flex;
+  display: flex;
+}
+
+.login-button_1-18 {
+  top: 47px;
+  left: 1000px;
+  position: absolute;
+  display: flex;
+  width: 186px;
+  height: 59px;
+}
+.rectangle-2_1-16 {
+  display: flex;
+}
+
+
+
+.text-login_1-17 {
+  color: #000000;
+  font-size: 32px;
+  font-family: Inter;
+  position: absolute;
+  top: 10px;
+  left: 17px;
+  letter-spacing: 0%;
+  text-decoration: none;
+  font-weight: 700;
+  text-align: center;
+  width: 150px;
+  height: 40px;
+}
+
+.register-button_1-19 {
+  top: 47px;
+  left: 1250px;
+  position: absolute;
+  display: flex;
+  width: 186px;
+  height: 59px;
+}
+.rectangle-2_1-20 {
+  display: flex;
+}
+
+.text-register_1-21 {
+  color: #ffffff;
+  font-size: 32px;
+  font-family: Inter;
+  letter-spacing: 0%;
+  position: absolute;
+  top: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  text-align: center;
+  width: 186px;
+  height: 27px;
+  z-index: 10;
+}
+
+.text-historical-data_1-23 {
+  top: 175px;
+  left: 53px;
+  position: absolute;
+  display: flex;
+  color: #000000;
+  font-size: 32px;
+  font-family: Inter;
+  letter-spacing: 0%;
+  text-decoration: none;
+  font-weight: 400;
+  text-align: center;
+  width: 236px;
+  height: 47px;
+}
+
+.text-reports_2-24 {
+  top: 175px;
+  left: 327px;
+  position: absolute;
+  display: flex;
+  color: #000000;
+  font-size: 32px;
+  font-family: Inter;
+  letter-spacing: 0%;
+  text-decoration: none;
+  font-weight: 400;
+  text-align: center;
+  width: 236px;
+  height: 47px;
+}
+
+.money-1_3-12 {
+  top: 323px;
+  left: 0px;
+  position: absolute;
+  display: flex;
+  display: flex;
+}
+
+.rectangle-3_16-2 {
+  top: 1024px;
+  left: 0px;
+  position: absolute;
+  display: flex;
+  display: flex;
+}
+
+.text-copyright---2025--all-rights-reserved_16-3 {
+  left: 14px;
+ 
+  position: absolute;
+  display: flex;
+  color: #ffffff;
+  font-size: 20px;
+  font-family: Inter;
+  letter-spacing: 0%;
+  text-decoration: none;
+  font-weight: 400;
+  text-align: left;
+  width: 831px;
+  height: 50px;
+}

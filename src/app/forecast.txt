@@ -1,0 +1,48 @@
+
+
+--- GDP Forecasting ---
+Calculated fluctuation margin for GDP: 1208.26
+Mean Absolute Percentage Error for GDP: 9.20%
+Adjusted Accuracy for GDP: 80.00% within ±2416.52 fluctuation
+
+
+--- Unemployment Rate Forecasting ---
+Calculated fluctuation margin for Unemployment Rate: 1.02
+Mean Absolute Percentage Error for Unemployment Rate: 6.23%
+Adjusted Accuracy for Unemployment Rate: 80.00% within ±2.04 fluctuation
+
+
+--- Inflation Rate Forecasting ---
+Calculated fluctuation margin for Inflation Rate: 1.01
+Mean Absolute Percentage Error for Inflation Rate: 34.67%
+Adjusted Accuracy for Inflation Rate: 84.21% within ±2.03 fluctuation
+
+
+--- Economic Growth Forecasting ---
+Calculated fluctuation margin for Economic Growth: 6.91
+Mean Absolute Percentage Error for Economic Growth: 48.92%
+Adjusted Accuracy for Economic Growth: 100.00% within ±13.81 fluctuation
+
+
+--- Q on Q Economic Growth Forecasting ---
+Calculated fluctuation margin for Q on Q Economic Growth: 5.96
+Mean Absolute Percentage Error for Q on Q Economic Growth: 70.67%
+Adjusted Accuracy for Q on Q Economic Growth: 89.47% within ±11.93 fluctuation
+
+
+--- Income Distribution Forecasting ---
+Calculated fluctuation margin for Income Distribution: 0.01
+Mean Absolute Percentage Error for Income Distribution: 0.95%
+Adjusted Accuracy for Income Distribution: 100.00% within ±0.01 fluctuation
+
+
+--- Net Exports Forecasting ---
+Calculated fluctuation margin for Net Exports: 1545.02
+Mean Absolute Percentage Error for Net Exports: 116.00%
+Adjusted Accuracy for Net Exports: 89.47% within ±3090.04 fluctuation
+Year	Forecasted GDP ($M)	Forecasted Unemployment Rate (%)	Forecasted Inflation Rate (%)	Forecasted Economic Growth (%)	Forecasted Quarterly Economic Growth (%)	Forecasted Income Distribution (Gini Coefficient)	Forecasted Net Exports (PM)
+2024	20028.84	22.205023	3.7075555	3.1353426	1.6106601	0.52495134	-305.4536
+2025	20530.602	21.321037	3.6592808	3.9168637	1.9909339	0.5245747	-403.0269
+2026	20435.71	20.67553	3.7976663	3.691286	2.5768723	0.52387625	-59.31524
+2027	20864.094	20.215395	3.9747183	3.5573857	2.5409107	0.5228945	119.76755
+2028	21138.344	19.8934	4.1640506	3.6238048	2.748082	0.5226734	166.14673

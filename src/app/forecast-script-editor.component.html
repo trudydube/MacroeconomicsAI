@@ -1,0 +1,115 @@
+<div class="policy-maker-dashboard_16-32">
+    <div class="rectangle-1_16-33">
+      <svg
+        width="100vw"
+        height="111"
+        viewBox="0 0 100vw 111"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="100vw" height="111" fill="white" />
+      </svg>
+    </div>
+    <span class="text-botswana"
+      >BOTSWANA</span
+    >
+    <span class="text-macro-model"
+      >MACROECONOMICS MODELLING</span
+    >
+    <div class="ellipse-1_16-35">
+      <svg
+        width="184"
+        height="116"
+        viewBox="0 0 184 116"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <path
+          d="M184 58C184 90.0325 142.81 116 92 116C41.1898 116 0 90.0325 0 58C0 25.9675 41.1898 0 92 0C142.81 0 184 25.9675 184 58Z"
+          fill="url(#pattern0_16_35)"
+        />
+        <defs>
+          <pattern
+            id="pattern0_16_35"
+            patternContentUnits="objectBoundingBox"
+            width="1"
+            height="1"
+          >
+            <use
+              xlink:href="#image0_16_35"
+              transform="matrix(0.000820879 0 0 0.00130208 -0.0253623 0)"
+            />
+          </pattern>
+          <image
+            id="image0_16_35"
+            width="1280"
+            height="768"
+            preserveAspectRatio="none"
+            xlink:href="flag.png"
+          />
+        </defs>
+      </svg>
+    </div>
+    <a class="text-home_16-36" href="/">Home</a>
+    <a class="text-historical-data_16-36" href="/historicaldataadmin">Historical Data</a>
+    <span class="text-reports_16-37">Reports</span>
+    <a class="text-policy-recommendation_16-38" href="/adminpolicyrec">Policy Recommendation</a>
+    <a class="text-forecasting_16-39" href="/adminforecast">Forecasting</a>
+    <a class="text-scenario-analysis_16-40" href="/adminscenarioanalysis">Scenario Analysis</a>
+    <a class="text-usermanagement" href="http://localhost:8080">User Management</a>
+
+    <div class="script-editor1">
+        <h2>Edit and Retrain Forecasting Model</h2>
+        
+        <div *ngIf="isLoading">Loading script...</div>
+      
+        <ngx-monaco-editor *ngIf="!isLoading" [(ngModel)]="scriptContent" [options]="editorOptions" style="width: 80%; height: 500px;"></ngx-monaco-editor><br>
+      
+        <button (click)="saveScript()" [disabled]="isSaving" class="savebutton">
+          {{ isSaving ? "Saving..." : "Save Changes" }}
+        </button>
+    </div>
+
+
+    
+    <div class="rectangle-3_16-42">
+      <svg
+        width="100vw"
+        height="138"
+        viewBox="0 0 100vw 138"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="100vw" height="138" fill="#565C5D" />
+      </svg>
+    </div>
+    <span class="text-copyright---2025--all-rights-reserved_16-43"
+      >Copyright © 2025, All Rights Reserved
+    </span>
+    <div class="login-button_16-44">
+      <div class="rectangle-2_16-45">
+        <svg
+          width="186"
+          height="59"
+          viewBox="0 0 186 59"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="185.518" height="59" rx="29.5" fill="white" />
+        </svg>
+      </div>
+      <button class="text-logout_16-46" style="background-color: transparent; border: none;" (click)="logout()">Logout</button>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+
+
+  

@@ -1,0 +1,319 @@
+<div class="policy-recommendation_16-4">
+    <div class="flag">
+      <svg
+        width="184"
+        height="116"
+        viewBox="0 0 184 116"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <path
+          d="M184 58C184 90.0325 142.81 116 92 116C41.1898 116 0 90.0325 0 58C0 25.9675 41.1898 0 92 0C142.81 0 184 25.9675 184 58Z"
+          fill="url(#pattern0_16_7)"
+        />
+        <defs>
+          <pattern
+            id="pattern0_16_7"
+            patternContentUnits="objectBoundingBox"
+            width="1"
+            height="1"
+          >
+            <use
+              xlink:href="#image0_16_7"
+              transform="matrix(0.000820879 0 0 0.00130208 -0.0253623 0)"
+            />
+          </pattern>
+          <image
+            id="image0_16_7"
+            width="1280"
+            height="768"
+            preserveAspectRatio="none"
+            xlink:href="flag.png"
+          />
+        </defs>
+      </svg>
+    </div>
+  
+    <span class="text-botswana"
+      >BOTSWANA</span
+    >
+    <span class="text-macro-model"
+      >MACROECONOMICS MODELING</span
+    >
+  
+    <span class="text-forecasting"
+      >FORECASTING MODEL</span
+    >
+  
+    <div class="login-button_16-28">
+      <div class="rectangle-2_16-29">
+        <svg
+          width="186"
+          height="59"
+          viewBox="0 0 186 59"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="185.518" height="59" rx="29.5" fill="white" />
+        </svg>
+      </div>
+      <button class="text-logout_16-30" (click)="logout()" style="background-color: transparent; border: none;">Logout</button>
+    </div>
+  
+    <div class="navbar">
+      <svg
+        width="100vw"
+        height="111"
+        viewBox="0 0 100vw 111"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="100vw" height="111" fill="white" />
+      </svg>
+    </div>
+    
+    <a class="text-home_16-14" href="/">Home</a>
+    <a class="text-historical-data_16-14" href="/historicaldataeconomist">Historical Data</a>
+    <a class="text-reports_16-15" href="/economistreport">Reports</a>
+    <span class="text-forecasting_16-24">Forecasting</span>
+    
+
+    <div class="policy-output" *ngIf="datasets.length > 0 && !forecastOutput">
+      <h2>Previously Uploaded Files</h2>
+  
+      <h3>Datasets</h3>
+      <table *ngIf="datasets.length > 0">
+          <thead>
+              <tr>
+                  <th>File Name</th>
+                  <th>Action</th>
+              </tr>
+          
+              <tr *ngFor="let dataset of datasets">
+                  <td>{{ dataset.fileName }}</td>
+                  <td>
+                    <a [href]="dataset.downloadUrl" target="_blank">Download</a>
+                  </td>
+              </tr>
+            </thead>
+  
+      
+      </table>
+  
+      <h3>Models</h3>
+      <table *ngIf="models.length > 0">
+          <thead>
+              <tr>
+                  <th>File Name</th>
+                  <th>Action</th>
+              </tr>
+          
+          <tr *ngFor="let model of models">
+              <td>{{ model.fileName }}</td>
+              <td>
+                <a [href]="model.downloadUrl" target="_blank">Download</a>
+              </td>
+          </tr>
+        </thead>    
+      </table>
+  </div>
+
+
+    <span class="text-upload-dataset_16-60">Upload dataset</span>
+    <span class="text-upload-model_16-61">Upload model</span>
+    
+    <div class="upload-dataset" (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)">
+      <svg
+        width="464"
+        height="337"
+        viewBox="0 0 464 337"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="464" height="337" fill="white" />
+      </svg>
+    </div>
+    <span class="text-drop-files-here_16-49" *ngIf="!selectedFile">Drop files here</span>
+    <span class="text-or_16-50" *ngIf="!selectedFile">or</span>
+
+
+    <div *ngIf="selectedFile" class="upload-dataset">
+      <img src="/fileicon.png" alt="file icon" style="width: 60px; height: 70px; margin-left: 200px; margin-top: 60px;">
+      <p style="font-size: 20px; margin-top: 150px; margin-left: -100px;">{{ selectedFile.name }}</p>
+    </div>
+
+
+
+
+    <div class="browse-dataset" (click)="datasetInput.click()" style="z-index: 9999;">
+      <svg
+        width="297"
+        height="70"
+        viewBox="0 0 297 70"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="297" height="70" rx="30" fill="#3FC2D0" />
+      </svg>
+    </div>
+    <span class="text-browse_16-52" style="z-index: 10000;">Browse</span>
+
+    <input #datasetInput type="file" (change)="onFileSelected($event)" style="display: none" />
+
+    
+    <div class="upload-model" (dragover)="onModelDragOver($event)"
+    (dragleave)="onModelDragLeave($event)"
+    (drop)="onModelDrop($event)">
+      <svg
+        width="464"
+        height="337"
+        viewBox="0 0 464 337"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="464" height="337" fill="white" />
+      </svg>
+    </div>
+  
+    <span class="text-drop-files-here_16-55" *ngIf="!selectedModel">Drop files here</span>
+    <span class="text-or_16-56" *ngIf="!selectedModel">or</span>
+
+    <div *ngIf="selectedModel" class="upload-model">
+      <img src="/fileicon.png" alt="file icon" style="width: 60px; height: 70px; margin-left: 200px; margin-top: 60px;">
+      <p style="font-size: 20px; margin-top: 150px; margin-left: -100px;">{{ selectedModel.name }}</p>
+    </div>
+    
+    <div class="browse" (click)="modelInput.click()" style="z-index: 9999;">
+      <svg
+        width="297"
+        height="70"
+        viewBox="0 0 297 70"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="297" height="70" rx="30" fill="#3FC2D0" />
+      </svg>
+    </div>
+    <span class="text-browse_16-58" style="z-index: 10000;">Browse</span>
+  
+    <input #modelInput type="file" (change)="onModelFileSelected($event)" style="display: none" />
+
+    <div class="generate-policy-button">
+      <svg
+        width="347"
+        height="88"
+        viewBox="0 0 347 88"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="347" height="88" rx="30" fill="black" />
+      </svg>
+    </div>
+  
+    <button class="generate-policy-button" style="color: #ffffff; background-color: transparent; font-size: 30px; padding: 20px; left: 537px; border: none;" (click)="forecast()">Forecast Variables</button>
+  
+    <div *ngIf="isLoading" class="loading-bar-container">
+      <div class="loading-bar"></div>
+      <p class="loading-text">Please wait... This may take a few minutes</p>
+    </div>
+  
+  
+  
+    <h2 style="margin-top: 880px; margin-left: 38px; padding: 10px;">How to Use:</h2>
+    <span class="how-to-use"> 
+      This model will output an optimal macroeconomic policy
+      recommendation based on historical economic data.<br><br> 
+      No Upload: If you choose
+      not to upload any data nor a model, the in-built model will use Botswana’s
+      current historical data to generate the policies. <br><br> 
+      Upload Dataset only: If you
+      choose only to upload a dataset, the in-built model will process this
+      dataset and produce an optimal policy recommendation based on the dataset.
+      See file format for in-built model below. <br><br>
+      Upload Model only: If you choose
+      only to upload a model, the dataset used for the model will be Botswana’s
+      historical data. Ensure your model caters for the file format shown below.<br><br>
+      Upload Both Model and Data: If you choose to upload both a model and a
+      dataset, your model will be trained using your dataset and the optimal
+      policy mix will be recommended.
+    </span>
+  
+  
+    <div class="policy-output" *ngIf="forecastOutput">
+  
+      <h3>Variable Details</h3>
+      <pre style="font-size: 20px;">{{ variableDetails.join('\n') }}</pre>
+  
+      <h3>Forecasted Economic Variables for 2024-2028:</h3>
+  
+      <table style="margin: 20px;" *ngIf="forecastOutput">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>GDP ($M)</th>
+              <th>Unemployment Rate (%)</th>
+              <th>Inflation Rate (%)</th>
+              <th>Economic Growth (%)</th>
+              <th>Quarterly Growth (%)</th>
+              <th>Income Distribution (Gini Coefficient)</th>
+              <th>Net Exports (PM)</th>
+            </tr>
+            <tr *ngFor="let row of forecastOutput">
+              <td>{{ row.year }}</td>
+              <td>{{ row.gdp}}</td>
+              <td>{{ row.unemploymentRate}}</td>
+              <td>{{ row.inflationRate}}</td>
+              <td>{{ row.economicGrowth}}</td>
+              <td>{{ row.quarterlyGrowth}}</td>
+              <td>{{ row.incomeDistribution}}</td>
+              <td>{{ row.netExports}}</td>
+            </tr>
+          </thead>
+        </table>
+  
+          <h3>Forecasts:</h3><br>
+          <img src="/forecasts.png" alt="forecast image" style="left: 30px;"/>
+
+          <button (click)="downloadPDF()">Download PDF</button>
+  
+      </div>
+  
+  
+    <div class="file-format">
+      <svg
+        width="683"
+        height="577"
+        viewBox="0 0 683 577"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="683" height="577" fill="white" />
+      </svg>
+    </div>
+    <span
+      class="text-file-format-for-in-built-model-a-tab-separated-csv-or-txt-file-with-the-following-columns--year--gdp--unemployment-rate--inflation-rate--economic-growth--q-on-q-economic-growth--income-and-wealth-distribution--net-exports--govt-expenditure--tax-revenue--money-supply--interest-rate--exchange-rate-of-crawl_19-66"
+      >File Format for in-built model A tab separated csv or txt file with the
+      following columns: Year, GDP, Unemployment Rate, Inflation Rate, Economic
+      growth, Q on Q Economic Growth, Income and Wealth distribution, Net Exports,
+      Govt Expenditure, Tax Revenue, Money Supply, Interest Rate, Exchange Rate of
+      Crawl
+    </span>
+    <div class="copyright">
+      <svg
+        width="100vw"
+        height="138"
+        viewBox="0 0 100vw 138"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="100vw" height="138" fill="#565C5D" />
+      </svg>
+    </div>
+    <span class="text-copyright---2025--all-rights-reserved_16-18"
+      >Copyright © 2025, All Rights Reserved
+    </span>
+  </div>
+  

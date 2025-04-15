@@ -1,0 +1,160 @@
+<div class="policy-recommendation_16-4">
+    <div class="flag">
+      <svg
+        width="184"
+        height="116"
+        viewBox="0 0 184 116"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <path
+          d="M184 58C184 90.0325 142.81 116 92 116C41.1898 116 0 90.0325 0 58C0 25.9675 41.1898 0 92 0C142.81 0 184 25.9675 184 58Z"
+          fill="url(#pattern0_16_7)"
+        />
+        <defs>
+          <pattern
+            id="pattern0_16_7"
+            patternContentUnits="objectBoundingBox"
+            width="1"
+            height="1"
+          >
+            <use
+              xlink:href="#image0_16_7"
+              transform="matrix(0.000820879 0 0 0.00130208 -0.0253623 0)"
+            />
+          </pattern>
+          <image
+            id="image0_16_7"
+            width="1280"
+            height="768"
+            preserveAspectRatio="none"
+            xlink:href="flag.png"
+          />
+        </defs>
+      </svg>
+    </div>
+  
+    <span class="text-botswana"
+      >BOTSWANA</span
+    >
+    <span class="text-macro-model"
+      >MACROECONOMICS MODELING</span
+    >
+  
+  
+    <div class="login-button_16-28">
+      <div class="rectangle-2_16-29">
+        <svg
+          width="186"
+          height="59"
+          viewBox="0 0 186 59"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="185.518" height="59" rx="29.5" fill="white" />
+        </svg>
+      </div>
+      <button class="text-logout_16-30" (click)="login()" style="background-color: transparent; border: none;">Login</button>
+      
+    </div>
+
+    <div class="register-button_1-19">
+        <div class="rectangle-2_1-20">
+          <svg
+            width="186"
+            height="59"
+            viewBox="0 0 186 59"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="0.481689"
+              width="185.518"
+              height="59"
+              rx="29.5"
+              fill="#565C5D"
+            />
+          </svg>
+        </div>
+        <button class="text-register_1-21" style="background-color: transparent; border: none;" (click)="register()">Register</button>
+      </div>
+  
+    <div class="navbar">
+      <svg
+        width="100vw"
+        height="111"
+        viewBox="0 0 100vw 111"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="100vw" height="111" fill="white" />
+      </svg>
+    </div>
+    
+    <a class="text-home_16-14" href="/">Home</a>
+    <a class="text-historical-data_16-14">Historical Data</a>
+    
+    <button class="generate-policy-button" style="color: #ffffff; background-color: black; font-size: 30px; padding: 20px; left: 550px; border: none;" (click)="historicaldata()">View Data</button>
+
+
+  
+
+    <div *ngIf="isLoading" class="loading-bar-container">
+        <div class="loading-bar"></div>
+        <p class="loading-text">Please wait... This may take a few seconds</p>
+    </div>
+
+ 
+
+    <div class="policy-output" >
+        <table style="margin: 20px;" *ngIf="historicalData">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>GDP ($M)</th>
+                <th>Unemployment Rate (%)</th>
+                <th>Inflation Rate (%)</th>
+                <th>Economic Growth (%)</th>
+                <th>Quarterly Growth (%)</th>
+                <th>Income Distribution (Gini Coefficient)</th>
+                <th>Net Exports (PM)</th>
+                <th>Govt Expenditure (% of GDP)</th>
+                <th>Tax Revenue (% of GDP)</th>
+                <th>Money Supply ($M)</th>
+                <th>Interest Rate (%)</th>
+              </tr>
+              <tr *ngFor="let row of historicalData">
+                <td>{{ row.year }}</td>
+                <td>{{ row.gdp}}</td>
+                <td>{{ row.unemploymentRate}}</td>
+                <td>{{ row.inflationRate}}</td>
+                <td>{{ row.economicGrowth}}</td>
+                <td>{{ row.quarterlyGrowth}}</td>
+                <td>{{ row.incomeDistribution}}</td>
+                <td>{{ row.netExports}}</td>
+                <td>{{ row.govtExpenditure}}</td>
+                <td>{{ row.taxRevenue}}</td>
+                <td>{{ row.moneySupply}}</td>
+                <td>{{ row.interestRate }}</td>
+              </tr>
+            </thead>
+          </table>
+      </div>
+     
+    <div class="copyright">
+      <svg
+        width="100vw"
+        height="138"
+        viewBox="0 0 100vw 138"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="100vw" height="138" fill="#565C5D" />
+      </svg>
+    </div>
+    <span class="text-copyright---2025--all-rights-reserved_16-18"
+      >Copyright © 2025, All Rights Reserved
+    </span>
+  </div>
+  

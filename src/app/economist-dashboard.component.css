@@ -1,0 +1,190 @@
+.policy-maker-dashboard_16-32 {
+    position: relative;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, #3fc2d0 0%, #ffffff 100%);
+    width: 100vw;
+    height: 100vh;
+  }
+  .rectangle-1_16-33 {
+    top: 143px;
+    left: 0px;
+    position: absolute;
+    display: flex;
+    display: flex;
+  }
+  
+  .text-botswana {
+    top: 35px;
+    left: 282px;
+    position: absolute;
+    display: flex;
+    color: #ffffff;
+    letter-spacing: 0%;
+    font-weight: bold;
+    font-size: xx-large;
+    text-align: left;
+    width: 708px;
+    height: 99px;
+  }
+  
+  .text-macro-model {
+    top: 50px;
+    padding-top: 30px;
+    left: 282px;
+    position: absolute;
+    display: flex;
+    color: #ffffff;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-size: larger;
+    text-align: left;
+    width: 708px;
+    height: 99px;
+  }
+  
+  .ellipse-1_16-35 {
+    top: 18px;
+    left: 18px;
+    position: absolute;
+    display: flex;
+    display: flex;
+  }
+  
+  .text-historical-data_16-36 {
+    top: 185px;
+    left: 40px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 28px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 201px;
+    height: 47px;
+  }
+  
+  .text-reports_16-37 {
+    top: 185px;
+    left: 440px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 28px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 127px;
+    height: 47px;
+  }
+  
+  .text-policy-recommendation_16-38 {
+    top: 185px;
+    left: 449px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 28px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 325px;
+    height: 47px;
+  }
+  
+  .text-forecasting_16-39 {
+    top: 185px;
+    left: 840px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 28px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 187px;
+    height: 47px;
+  }
+  
+  .text-scenario-analysis_16-40 {
+    top: 185px;
+    left: 1240px;
+    position: absolute;
+    display: flex;
+    color: #000000;
+    font-size: 28px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+    width: 250px;
+    height: 47px;
+  }
+  
+  .money-1_16-41 {
+    top: 323px;
+    left: 0px;
+    position: absolute;
+    display: flex;
+    display: flex;
+  }
+  
+  .rectangle-3_16-42 {
+    top: 1024px;
+    left: 0px;
+    position: absolute;
+    display: flex;
+    display: flex;
+  }
+  
+  .text-copyright---2025--all-rights-reserved_16-43 {
+    top: 1059px;
+    position: absolute;
+    display: flex;
+    color: #ffffff;
+    font-size: 20px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: left;
+    width: 100vw;
+    height: 50px;
+  }
+  
+  .login-button_16-44 {
+    top: 35px;
+    left: 1300px;
+    position: absolute;
+    display: flex;
+    width: 186px;
+    height: 59px;
+  }
+  .rectangle-2_16-45 {
+    display: flex;
+  }
+  
+  .text-logout_16-46 {
+    color: #000000;
+    font-size: 32px;
+    font-family: Inter;
+    letter-spacing: 0%;
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    text-align: center;
+    width: 163px;
+    height: 27px;
+  }
+  

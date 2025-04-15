@@ -1,0 +1,32 @@
+	GDP ($M)	Unemployment Rate (%)	Inflation Rate (%)	Economic growth (%)	Q on Q Economic Growth (%)	Income and Wealth Distribution (Gini coefficient)	Net Exports (PM)
+Govt Expenditure (% of GDP)	0.14709582324179973	0.09197744875588727	0.14926831016224149	0.45226185580889877	0.34501501745178126	0.01581097437241716	0.211974294585393
+Tax Revenue (% of GDP)	0.1252103943540418	0.18478234699473736	0.027264834642159515	0.11638807428305785	0.1501452657086704	0.05774727626304965	0.2255081958975968
+Money supply ($M)	0.21061043581961392	0.1237634191434089	0.06394070689669291	0.04420786545125181	0.12384328962314789	0.19572122923555924	0.2418282467129284
+Interest Rate (%)	0.5038888848850018	0.3793933902366179	0.41481974932464233	0.20491143792782768	0.3199130840205101	0.7180134194115407	0.18515868581471007
+Rate of crawl (%)	0.013194461699542642	0.22008339486934864	0.34470639897426386	0.18223076652896386	0.06108334319589036	0.01270710071743325	0.13553057698937193
+GDP ($M): 19384.57
+Unemployment Rate (%): 22.95
+Inflation Rate (%): 3.61
+Economic growth (%): 6.63
+Q on Q Economic Growth (%): 5.45
+Income and Wealth Distribution (Gini coefficient): 0.53
+Net Exports (PM): -239.79
+
+Latest Economic and Policy Data:
+Govt Expenditure (% of GDP): 33.10
+Tax Revenue (% of GDP): 22.00
+Money supply ($M): 8000.00
+Interest Rate (%): 2.40
+Rate of crawl (%): -1.51
+GDP ($M): 18900.00
+Unemployment Rate (%): 23.38
+Inflation Rate (%): 3.10
+Economic growth (%): 2.73
+Q on Q Economic Growth (%): 2.30
+Income and Wealth Distribution (Gini coefficient): 0.53
+Net Exports (PM): -333.00
+Govt Expenditure (% of GDP): 33.45
+Tax Revenue (% of GDP): 21.79
+Money supply ($M): 8000.19
+Interest Rate (%): 1.86
+Rate of crawl (%): -1.85

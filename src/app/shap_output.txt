@@ -1,0 +1,7 @@
+GDP ($M): R² Score = 0.9316, RMSE = 712.7946
+Unemployment Rate (%): R² Score = 0.9366, RMSE = 0.5033
+Inflation Rate (%): R² Score = 0.6952, RMSE = 2.0628
+Economic growth (%): R² Score = 0.9869, RMSE = 0.6884
+Q on Q Economic Growth (%): R² Score = -0.5219, RMSE = 6.6384
+Income and Wealth Distribution (Gini coefficient): R² Score = 0.9725, RMSE = 0.0070
+Net Exports (PM): R² Score = -1.3057, RMSE = 2335.3438
