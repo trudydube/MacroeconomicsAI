@@ -7,6 +7,7 @@ import { NgModule } from "@angular/core";
 import { KeycloakService } from "keycloak-angular";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { environment } from "./environments/environment";
 
 @Component({
     selector: "app-policy-recommendation",
@@ -28,8 +29,7 @@ export class PolicyRecommendationComponent {
   selectedFile: File | null = null;
   selectedModel: File | null = null;
   shapModel: boolean = true;
-  apiUrl = 'http://localhost:3003';
-  defaultFilePath: string = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp/src/app/Economic_Indicators.txt";
+  defaultFilePath: string = "./Economic_Indicators.txt";
   errorDetails: string[] = [];
   datasets: any[] = [];
   models: any[] = [];
@@ -52,7 +52,7 @@ export class PolicyRecommendationComponent {
   loadUserFiles() {
     const username = this.getUsername();
 
-    this.http.post<any>("http://localhost:3000/src/app/get_files.php", { username }).subscribe(response => {
+    this.http.post<any>(`${environment.apiUrl}/src/app/get_files.php`, { username }).subscribe(response => {
         this.datasets = response.datasets;
         this.models = response.models;
     }, error => {
@@ -63,8 +63,6 @@ export class PolicyRecommendationComponent {
   downloadFile(downloadUrl: string) {
     window.open(downloadUrl, "_blank");
   }
-
-  
 
   onDragOver(event: DragEvent) {
     event.preventDefault(); 
@@ -153,18 +151,14 @@ export class PolicyRecommendationComponent {
       }
 
       const fileName = `${username}_policyreport_${Date.now()}.pdf`; // Generates unique file name to avoid overwriting
-      const path = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp";
       const pdfBlob = pdf.output("blob");
       const formData = new FormData();
       formData.append("pdfFile", pdfBlob, fileName);
+      formData.append("username", username);
 
-      this.http.post(`${this.apiUrl}/save-pdf`, formData).subscribe(
+      this.http.post(`${environment.reportApiUrl}/save-pdf`, formData).subscribe(
         response => {
           console.log("PDF uploaded successfully", response);
-
-          const filePath = `${path}/public/${fileName}`;
-          this.uploadReport(fileName, filePath, username);
-
         },
         error => {
           console.error("Error uploading PDF", error);
@@ -178,31 +172,13 @@ export class PolicyRecommendationComponent {
 
   }
 
-  uploadReport(fileName: string, filePath: string, username: string) {
-    const formData = new FormData();
-    formData.append("username", username);
-    formData.append("fileName", fileName);
-    formData.append("filePath", filePath);
-
-    this.http.post("http://localhost:3000/src/app/upload_report.php", formData)
-        .subscribe(
-            response => {
-                console.log("Report file path saved successfully", response);
-            },
-            error => {
-                console.error("Error saving report file path", error);
-            }
-        );
-
-  }
-
   uploadFile(file: File, fileType: string, username: string) {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("fileType", fileType);
     formData.append("username", username);
   
-    this.http.post("http://localhost:3000/src/app/upload_file.php", formData)
+    this.http.post(`${environment.apiUrl}/src/app/upload_file.php`, formData)
       .subscribe(response => {
         console.log(`${fileType} uploaded successfully`, response);
       }, error => {
@@ -229,7 +205,7 @@ export class PolicyRecommendationComponent {
       this.uploadFile(this.selectedModel, "model", username)
     }
       
-    this.http.post<any>("http://127.0.0.1:5003/get-policies", formData)
+    this.http.post<any>(`${environment.flask3ApiUrl}/get-policies`, formData)
         .subscribe(response => {
 
           this.isLoading = false;

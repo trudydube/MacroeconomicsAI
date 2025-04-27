@@ -1,0 +1,101 @@
+version: '3'
+services:
+  angular-frontend:
+    build:
+      context: ./src/app
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "80:80"
+    volumes:
+      - ./public:/app/public    
+    depends_on:
+      - nodejs-server
+      - nodejs-report
+      - flask0
+      - flask1
+      - flask2
+      - flask3
+      - flask4
+      - keycloak
+
+  flask0:
+    build:
+      context: ./src/app
+      dockerfile: Dockerfile.flask0
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./public:/app/public
+
+  flask1:
+    build:
+      context: ./src/app
+      dockerfile: Dockerfile.flask1
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./public:/app/public
+
+  flask2:
+    build:
+      context: ./src/app
+      dockerfile: Dockerfile.flask2
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./public:/app/public
+
+  flask3:
+    build:
+      context: ./src/app
+      dockerfile: Dockerfile.flask3
+    ports:
+      - "5003:5003"
+    volumes:
+      - ./public:/app/public
+
+  flask4:
+    build:
+      context: ./src/app
+      dockerfile: Dockerfile.flask4
+    ports:
+      - "5004:5004"
+    volumes:
+      - ./public:/app/public
+
+  nodejs-server:
+    build:
+      context: ./
+      dockerfile: src/app/Dockerfile.nodejs1
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./public:/app/public
+
+  nodejs-report:
+    build:
+      context: ./
+      dockerfile: src/app/Dockerfile.nodejs2
+    ports:
+      - "3003:3003"
+    volumes:
+      - ./public:/app/public
+
+  php-server:
+    build:
+      context: ./src/app
+      dockerfile: Dockerfile.php
+    ports:
+      - "3000:3000" 
+
+  keycloak:
+    image: jboss/keycloak
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      DB_VENDOR: h2
+      KEYCLOAK_IMPORT: /tmp/realm-export.json
+    ports:
+      - "8080:8080"  
+    volumes:
+      - ./src/app/realm-export.json:/tmp/realm-export.json

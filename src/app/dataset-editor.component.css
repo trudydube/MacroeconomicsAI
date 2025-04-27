@@ -14,7 +14,7 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: auto;
-    top: 400px;
+    top: 350px;
     left: 46px;
     position: absolute;
     flex-direction: column;
@@ -58,6 +58,18 @@
     width: 100%;
     box-sizing: border-box;
     max-width: 100px; 
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.delete-button svg {
+  width: 24px;
+  height: 24px;
 }
   
 
@@ -275,7 +287,7 @@
   }
   
   .rectangle-3_16-42 {
-    top: 5000px;
+    top: 5300px;
     left: 0px;
     position: absolute;
     display: flex;
@@ -283,7 +295,7 @@
   }
   
   .text-copyright---2025--all-rights-reserved_16-43 {
-    top: 5020px;
+    top: 5320px;
     position: absolute;
     display: flex;
     color: #ffffff;

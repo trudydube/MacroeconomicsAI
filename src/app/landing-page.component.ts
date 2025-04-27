@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { Router } from '@angular/router';
 import { KeycloakAngularModule, KeycloakService, KeycloakEventType } from "keycloak-angular";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
+import { environment } from "./environments/environment";
 
 
 
@@ -16,7 +17,6 @@ import { HttpClientModule, HttpClient } from "@angular/common/http";
 export class LandingPageComponent implements OnInit {
 
     constructor(private keycloakService: KeycloakService, private router: Router, private http: HttpClient) {}
-
     async ngOnInit() {
       await this.loginAndSaveUser();
       await this.redirectBasedOnRole();
@@ -39,7 +39,7 @@ export class LandingPageComponent implements OnInit {
 
       console.log('Sending user data:', userData);
 
-      this.http.post("http://localhost:3000/src/app/saveuser.php", userData).subscribe(
+      this.http.post(`${environment.apiUrl}/src/app/saveuser.php`, userData).subscribe(
           (response: any) => {
               console.log(response.message);
           },
@@ -52,7 +52,6 @@ export class LandingPageComponent implements OnInit {
     async login() {
       // Check if the user is logged in
       const isLoggedIn = await this.keycloakService.isLoggedIn();
-  
       if (!isLoggedIn) {
         // If the user is not logged in, initiate the Keycloak login
         await this.keycloakService.login();
@@ -64,7 +63,6 @@ export class LandingPageComponent implements OnInit {
         // After login, check roles and redirect based on roles
             
     }
-
 
       private async redirectBasedOnRole() {
         // Load user profile and roles
@@ -91,11 +89,6 @@ export class LandingPageComponent implements OnInit {
       }
     
       public logout(): void {
-    
         this.keycloakService.logout();
-    
       }
-
-
-
 }

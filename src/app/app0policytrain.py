@@ -8,7 +8,7 @@ output_file = os.path.join(os.getcwd(), "shap_output.txt")
 app = Flask(__name__)
 CORS(app)
 
-default_dataset_path = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp/src/app/Economic_Indicators.txt"
+default_dataset_path = "./Economic_Indicators.txt"
 
 @app.route('/generate-policies', methods=['POST'])
 def generate_policies():

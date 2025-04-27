@@ -5,15 +5,14 @@ const bodyParser = require("body-parser");
 
 const app = express();
 const PORT = 3002; 
-const scriptPath1 = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp/src/app/policyrec.py"; 
-const scriptPath2 = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp/src/app/getpolicy.py"; 
-const scriptPath3 = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp/src/app/forecast.py"; 
-const scriptPath4 = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp/src/app/scenarioanalysis.py"; 
-const scriptPath5 = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp/src/app/Economic_Indicators.txt"; 
+const scriptPath1 = "./policyrec.py"; 
+const scriptPath2 = "./getpolicy.py"; 
+const scriptPath3 = "./forecast.py"; 
+const scriptPath4 = "./scenarioanalysis.py"; 
+const scriptPath5 = "./Economic_Indicators.txt"; 
 
 app.use(cors());
 app.use(bodyParser.json());
-
 
 app.get("/get-script-training", (req, res) => {
   fs.readFile(scriptPath1, "utf8", (err, data) => {
@@ -71,7 +70,6 @@ app.post("/save-forecast-script", (req, res) => {
   });
 });
 
-
   app.post("/save-script-training", (req, res) => {
     const updatedContent = req.body.content;
   
@@ -82,7 +80,6 @@ app.post("/save-forecast-script", (req, res) => {
       res.json({ message: "Script updated successfully" });
     });
   });
-
 
 app.post("/save-script-invocation", (req, res) => {
   const updatedContent = req.body.content;
@@ -117,7 +114,6 @@ app.post("/save-dataset", (req, res) => {
   });
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

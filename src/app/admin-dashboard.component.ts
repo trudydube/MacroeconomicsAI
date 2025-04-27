@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { KeycloakAngularModule, KeycloakService, KeycloakEventType } from "keycloak-angular";
+import { environment } from "./environments/environment";
 
 
 @Component({
@@ -11,6 +12,7 @@ import { KeycloakAngularModule, KeycloakService, KeycloakEventType } from "keycl
     standalone: true,
 })
 export class AdminDashboardComponent {
+  environment = environment;
 
     constructor(private keycloakService: KeycloakService) {}
     

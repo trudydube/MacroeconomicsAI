@@ -7,9 +7,9 @@ header("Content-Type: application/json");
 
 
 $servername = "sql7.freesqldatabase.com";
-$dbusername = "sql7739145";
-$dbpassword = "NcBLLk5Kem";
-$dbname = "sql7739145";
+$dbusername = "sql7775395";
+$dbpassword = "jvGBISnIIa";
+$dbname = "sql7775395";
 
 $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 

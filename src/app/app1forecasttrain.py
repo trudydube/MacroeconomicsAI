@@ -8,7 +8,7 @@ output_file = os.path.join(os.getcwd(), "forecast.txt")
 app = Flask(__name__)
 CORS(app)
 
-default_dataset_path = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp/src/app/Economic_Indicators.txt"
+default_dataset_path = "./Economic_Indicators.txt"
 model_save_path = os.path.join(os.getcwd(), "uploaded_model.pkl")
 
 @app.route('/forecast', methods=['POST'])

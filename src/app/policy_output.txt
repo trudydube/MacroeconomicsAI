@@ -4,13 +4,13 @@ Tax Revenue (% of GDP)	0.1252103943540418	0.18478234699473736	0.0272648346421595
 Money supply ($M)	0.21061043581961392	0.1237634191434089	0.06394070689669291	0.04420786545125181	0.12384328962314789	0.19572122923555924	0.2418282467129284
 Interest Rate (%)	0.5038888848850018	0.3793933902366179	0.41481974932464233	0.20491143792782768	0.3199130840205101	0.7180134194115407	0.18515868581471007
 Rate of crawl (%)	0.013194461699542642	0.22008339486934864	0.34470639897426386	0.18223076652896386	0.06108334319589036	0.01270710071743325	0.13553057698937193
-GDP ($M): 19384.57
-Unemployment Rate (%): 22.95
-Inflation Rate (%): 3.61
-Economic growth (%): 6.63
-Q on Q Economic Growth (%): 5.45
+GDP ($M): 19671.37
+Unemployment Rate (%): 23.14
+Inflation Rate (%): 3.38
+Economic growth (%): 4.93
+Q on Q Economic Growth (%): 4.04
 Income and Wealth Distribution (Gini coefficient): 0.53
-Net Exports (PM): -239.79
+Net Exports (PM): -246.91
 
 Latest Economic and Policy Data:
 Govt Expenditure (% of GDP): 33.10
@@ -18,15 +18,15 @@ Tax Revenue (% of GDP): 22.00
 Money supply ($M): 8000.00
 Interest Rate (%): 2.40
 Rate of crawl (%): -1.51
-GDP ($M): 18900.00
+GDP ($M): 19400.00
 Unemployment Rate (%): 23.38
 Inflation Rate (%): 3.10
 Economic growth (%): 2.73
 Q on Q Economic Growth (%): 2.30
 Income and Wealth Distribution (Gini coefficient): 0.53
 Net Exports (PM): -333.00
-Govt Expenditure (% of GDP): 33.45
-Tax Revenue (% of GDP): 21.79
-Money supply ($M): 8000.19
-Interest Rate (%): 1.86
+Govt Expenditure (% of GDP): 33.37
+Tax Revenue (% of GDP): 21.85
+Money supply ($M): 8000.08
+Interest Rate (%): 2.11
 Rate of crawl (%): -1.85

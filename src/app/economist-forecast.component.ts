@@ -7,6 +7,7 @@ import { NgModule } from "@angular/core";
 import { KeycloakService } from "keycloak-angular";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { environment } from "./environments/environment";
 
 @Component({
     selector: "app-forecast",
@@ -25,10 +26,9 @@ export class EconomistForecastComponent {
   isLoading: boolean = false;
   selectedFile: File | null = null;
   selectedModel: File | null = null;
-  apiUrl = 'http://localhost:3003';
   datasets: any[] = [];
   models: any[] = [];
-  defaultFilePath: string = "C:/Users/trudy/OneDrive/Documents/CSI408/alphas/testapp/src/app/Economic_Indicators.txt";
+  defaultFilePath: string = "./Economic_Indicators.txt";
 
   constructor(private http: HttpClient, private keycloakService: KeycloakService) {
     this.loadUserFiles();
@@ -47,7 +47,7 @@ export class EconomistForecastComponent {
   loadUserFiles() {
     const username = this.getUsername();
 
-    this.http.post<any>("http://localhost:3000/src/app/get_files.php", { username }).subscribe(response => {
+    this.http.post<any>(`${environment.apiUrl}/src/app/get_files.php`, { username }).subscribe(response => {
         this.datasets = response.datasets;
         this.models = response.models;
     }, error => {
@@ -144,17 +144,14 @@ export class EconomistForecastComponent {
         }
       }
       const fileName = `${username}_forecastreport_${Date.now()}.pdf`; // Generates unique file name to avoid overwriting
-      const path = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp";
       const pdfBlob = pdf.output("blob");
       const formData = new FormData();
       formData.append("pdfFile", pdfBlob, fileName);
+      formData.append("username", username);
 
-      this.http.post(`${this.apiUrl}/save-pdf`, formData).subscribe(
+      this.http.post(`${environment.reportApiUrl}/save-pdf`, formData).subscribe(
         response => {
           console.log("PDF uploaded successfully", response);
-
-          const filePath = `${path}/public/${fileName}`;
-          this.uploadReport(fileName, filePath, username);
 
         },
         error => {
@@ -166,31 +163,13 @@ export class EconomistForecastComponent {
     });
   }
 
-  uploadReport(fileName: string, filePath: string, username: string) {
-    const formData = new FormData();
-    formData.append("username", username);
-    formData.append("fileName", fileName);
-    formData.append("filePath", filePath);
-
-    this.http.post("http://localhost:3000/src/app/upload_report.php", formData)
-        .subscribe(
-            response => {
-                console.log("Report file path saved successfully", response);
-            },
-            error => {
-                console.error("Error saving report file path", error);
-            }
-        );
-
-  }
-
   uploadFile(file: File, fileType: string, username: string) {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("fileType", fileType);
     formData.append("username", username);
   
-    this.http.post("http://localhost:3000/src/app/upload_file.php", formData)
+    this.http.post(`${environment.apiUrl}/src/app/upload_file.php`, formData)
       .subscribe(response => {
         console.log(`${fileType} uploaded successfully`, response);
       }, error => {
@@ -217,15 +196,15 @@ export class EconomistForecastComponent {
       this.uploadFile(this.selectedModel, "model", username)
     }
 
-    this.http.post<any>("http://127.0.0.1:5001/forecast", formData)
+    this.http.post<any>(`${environment.flask1ApiUrl}/forecast`, formData)
       .subscribe(response => {
 
         this.isLoading = false;
 
         if (response.success) {
             const lines = response.output.trim().split("\n");
-            this.variableDetails = lines.slice(0,40)
-            this.forecastOutput = lines.slice(41).filter((line: string) => line.trim() !== "").map((line: string) => {
+            this.variableDetails = lines.slice(0,33)
+            this.forecastOutput = lines.slice(34).filter((line: string) => line.trim() !== "").map((line: string) => {
                 const columns = line.split("\t");
                 return {
                     year: columns[0],

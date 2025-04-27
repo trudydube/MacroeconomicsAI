@@ -8,6 +8,7 @@ import { NgModule } from "@angular/core";
 import { KeycloakService } from "keycloak-angular";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { environment } from "./environments/environment";
 
 @Component({
     selector: "app-scenario-analysis",
@@ -18,7 +19,6 @@ import html2canvas from 'html2canvas';
     standalone: true,
 })
 
-
 export class ScenarioAnalysisComponent {
   latestVariables: any = null;
   shapValues: any[] = [];
@@ -28,11 +28,10 @@ export class ScenarioAnalysisComponent {
   shapModel: boolean = true;
   selectedFile: File | null = null;
   selectedModel: File | null = null;
-  apiUrl = 'http://localhost:3003';
   datasets: any[] = [];
   models: any[] = [];
   errorDetails: string[] = [];
-  defaultFilePath: string = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp/src/app/Economic_Indicators.txt";
+  defaultFilePath: string = "./Economic_Indicators.txt";
 
   policyInputs = {
     govtExpenditure: 33.1,
@@ -42,15 +41,12 @@ export class ScenarioAnalysisComponent {
     rateOfCrawl: -1.51,
   };
 
-
   constructor(private http: HttpClient, private keycloakService: KeycloakService) {
     this.loadUserFiles();
   }
 
   public logout(): void {
-    
     this.keycloakService.logout();
-
   }
 
   getUsername(): string {
@@ -68,7 +64,7 @@ export class ScenarioAnalysisComponent {
   loadUserFiles() {
     const username = this.getUsername();
 
-    this.http.post<any>("http://localhost:3000/src/app/get_files.php", { username }).subscribe(response => {
+    this.http.post<any>(`${environment.apiUrl}/src/app/get_files.php`, { username }).subscribe(response => {
         this.datasets = response.datasets;
         this.models = response.models;
     }, error => {
@@ -165,17 +161,14 @@ export class ScenarioAnalysisComponent {
         }
       }
       const fileName = `${username}_scenarioanalysisreport_${Date.now()}.pdf`; // Generates unique file name to avoid overwriting
-      const path = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp";
       const pdfBlob = pdf.output("blob");
       const formData = new FormData();
       formData.append("pdfFile", pdfBlob, fileName);
+      formData.append("username", username);
 
-      this.http.post(`${this.apiUrl}/save-pdf`, formData).subscribe(
+      this.http.post(`${environment.reportApiUrl}/save-pdf`, formData).subscribe(
         response => {
           console.log("PDF uploaded successfully", response);
-
-          const filePath = `${path}/public/${fileName}`;
-          this.uploadReport(fileName, filePath, username);
 
         },
         error => {
@@ -187,31 +180,13 @@ export class ScenarioAnalysisComponent {
     });
   }
 
-  uploadReport(fileName: string, filePath: string, username: string) {
-    const formData = new FormData();
-    formData.append("username", username);
-    formData.append("fileName", fileName);
-    formData.append("filePath", filePath);
-
-    this.http.post("http://localhost:3000/src/app/upload_report.php", formData)
-        .subscribe(
-            response => {
-                console.log("Report file path saved successfully", response);
-            },
-            error => {
-                console.error("Error saving report file path", error);
-            }
-        );
-
-  }
-
   uploadFile(file: File, fileType: string, username: string) {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("fileType", fileType);
     formData.append("username", username);
   
-    this.http.post("http://localhost:3000/src/app/upload_file.php", formData)
+    this.http.post(`${environment.apiUrl}/src/app/upload_file.php`, formData)
       .subscribe(response => {
         console.log(`${fileType} uploaded successfully`, response);
       }, error => {
@@ -250,7 +225,7 @@ export class ScenarioAnalysisComponent {
     }
 
 
-    this.http.post<any>("http://127.0.0.1:5004/scenario-analysis", this.policyInputs)
+    this.http.post<any>(`${environment.flask4ApiUrl}/scenario-analysis`, this.policyInputs)
         .subscribe(response => {
 
           this.isLoading = false;

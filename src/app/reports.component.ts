@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core
 import { CommonModule } from "@angular/common";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { KeycloakService } from "keycloak-angular";
+import { environment } from "./environments/environment";
 
 @Component({
     selector: "app-reports",
@@ -23,7 +24,6 @@ export class ReportsComponent {
         this.keycloakService.logout();
     
       }
-
       
         getUsername(): string {
             return this.keycloakService.getUsername();
@@ -32,7 +32,7 @@ export class ReportsComponent {
       loadUserReports() {
         const username = this.getUsername();
 
-        this.http.get<any>(`http://localhost:3000/src/app/get_reports.php?username=${username}`).subscribe(response => {
+        this.http.get<any>(`${environment.apiUrl}/src/app/get_reports.php?username=${username}`).subscribe(response => {
             this.reports = response;
         }, error => {
             console.error("Error fetching reports:", error);

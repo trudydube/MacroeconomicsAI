@@ -3,18 +3,19 @@ import { provideRouter } from '@angular/router';
 import { KeycloakAngularModule, KeycloakBearerInterceptor, KeycloakService } from 'keycloak-angular';
 import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { environment } from './environments/environment';
 
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://localhost:8080',
+        url: `${environment.keycloakUrl}`,
         realm: 'master',
         clientId: 'angularapp'
       },
       initOptions: {
-        onLoad: 'check-sso', // 'login-required' , 'check-sso'
+        onLoad: 'check-sso', 
         silentCheckSsoRedirectUri:
           window.location.origin + '/silent-check-sso.html',
           checkLoginIframe: false

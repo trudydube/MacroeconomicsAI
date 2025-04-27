@@ -18,10 +18,10 @@ Economic growth (%): 2.73
 Q on Q Economic Growth (%): 2.30
 Income and Wealth Distribution (Gini coefficient): 0.53
 Net Exports (PM): -333.00
-GDP ($M): 19272.76
-Unemployment Rate (%): 23.44
-Inflation Rate (%): 3.07
-Economic growth (%): 2.58
-Q on Q Economic Growth (%): 1.93
+GDP ($M): 19551.29
+Unemployment Rate (%): 23.19
+Inflation Rate (%): 3.13
+Economic growth (%): 3.53
+Q on Q Economic Growth (%): 3.20
 Income and Wealth Distribution (Gini coefficient): 0.53
-Net Exports (PM): -519.81
+Net Exports (PM): -681.41

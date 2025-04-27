@@ -79,7 +79,7 @@
     <a class="text-policy-recommendation_16-38" href="/adminpolicyrec">Policy Recommendation</a>
     <a class="text-scenario-analysis_16-40" href="/adminscenarioanalysis">Scenario Analysis</a>
     <a class="text-config" href="/systemconfig">System Configuration</a>
-    <a class="text-usermanagement" href="http://localhost:8080">User Management</a>
+    <a class="text-usermanagement" [href]="environment.keycloakUrl" target="_blank">User Management</a>
     
     <div class="policy-output" *ngIf="datasets.length > 0 && !forecastOutput">
       <h2>Previously Uploaded Files</h2>
@@ -224,23 +224,21 @@
   
   
   
-    <h2 style="margin-top: 880px; margin-left: 38px; padding: 10px;">How to Use:</h2>
+    <h2 style="margin-top: 1000px; margin-left: 38px; padding: 10px;">How to Use:</h2>
     <span class="how-to-use"> 
-      This model will output an optimal macroeconomic policy
-      recommendation based on historical economic data.<br><br> 
+      This model will produce output based on historical economic data.<br><br> 
       No Upload: If you choose
       not to upload any data nor a model, the in-built model will use Botswana’s
-      current historical data to generate the policies. <br><br> 
+      current historical data to generate an output. <br><br> 
       Upload Dataset only: If you
       choose only to upload a dataset, the in-built model will process this
-      dataset and produce an optimal policy recommendation based on the dataset.
+      dataset and produce an output based on the dataset.
       See file format for in-built model below. <br><br>
       Upload Model only: If you choose
       only to upload a model, the dataset used for the model will be Botswana’s
       historical data. Ensure your model caters for the file format shown below.<br><br>
       Upload Both Model and Data: If you choose to upload both a model and a
-      dataset, your model will be trained using your dataset and the optimal
-      policy mix will be recommended.
+      dataset, your model will be trained using your dataset and produce an output.
     </span>
   
   

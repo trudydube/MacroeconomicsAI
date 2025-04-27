@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { KeycloakService } from "keycloak-angular";
+import { environment } from "./environments/environment";
 
 @Component({
     selector: "app-view-data",
@@ -23,22 +24,17 @@ export class ViewDataComponent {
           }
              
           async login() {
-            // Check if the user is logged in
             const isLoggedIn = await this.keycloakService.isLoggedIn();
         
             if (!isLoggedIn) {
-              // If the user is not logged in, initiate the Keycloak login
               await this.keycloakService.login();
               await this.redirectBasedOnRole();
           
             } else {
               await this,this.redirectBasedOnRole();
-            }
-              // After login, check roles and redirect based on roles
-                  
+            }                  
           }
             private async redirectBasedOnRole() {
-              // Load user profile and roles
               const userProfile = await this.keycloakService.loadUserProfile();
               const roles = await this.keycloakService.getUserRoles(); 
           
@@ -65,7 +61,7 @@ export class ViewDataComponent {
     
         this.isLoading = true;
     
-        this.http.post<any>("http://127.0.0.1:5002/historical-data", {})
+        this.http.post<any>(`${environment.flask2ApiUrl}/historical-data`, {})
           .subscribe(response => {
     
             this.isLoading = false;

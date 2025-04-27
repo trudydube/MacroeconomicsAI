@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { KeycloakAngularModule, KeycloakService, KeycloakEventType } from "keycloak-angular";
 import { RouterModule } from "@angular/router";
+import { environment } from "./environments/environment";
 
 
 @Component({
@@ -12,6 +13,7 @@ import { RouterModule } from "@angular/router";
     standalone: true,
 })
 export class SystemConfigComponent {
+  environment = environment;
 
     constructor(private keycloakService: KeycloakService) {}
     

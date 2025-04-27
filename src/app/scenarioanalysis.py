@@ -21,13 +21,6 @@ scaler = joblib.load("scaler.pkl")
 
 output_file = "scenario_analysis.txt"
 
-logging.basicConfig(level=logging.DEBUG, filename="debug.log")
-
-logging.debug(f"Received args: {sys.argv}")
-# Log each argument individually
-for i, arg in enumerate(sys.argv):
-    logging.debug(f"sys.argv[{i}] = {arg}")
-
 
 # Read user inputs
 input_policies = [
@@ -70,7 +63,6 @@ def calculate_dynamic_adjustments(latest_economy, latest_policies, input_policie
     interest_rate_change = new_policies[3] - latest_policies[3]
     rate_of_crawl_change = new_policies[4] - latest_policies[4]
 
-
     # Predict the new economic outcomes using the policy impact weights
     for j, economic_var in enumerate(economic_vars):
         for i, policy_var in enumerate(policy_vars):
@@ -109,8 +101,6 @@ def calculate_dynamic_adjustments(latest_economy, latest_policies, input_policie
                         predicted_economy[j] -= new_value
                     else:
                         predicted_economy[j] += new_value
-
-
 
             if(economic_var == "Unemployment Rate (%)"):
                 fluctuation = df_unique[economic_var].diff().abs()
@@ -185,10 +175,7 @@ def calculate_dynamic_adjustments(latest_economy, latest_policies, input_policie
                     if(adjusted_impact > 0):
                         predicted_economy[j] -= new_value
                     else:
-                        predicted_economy[j] += new_value
-
-
-                  
+                        predicted_economy[j] += new_value            
 
             if(economic_var == "Economic growth (%)"):
                 fluctuation = df_unique[economic_var].diff().abs()

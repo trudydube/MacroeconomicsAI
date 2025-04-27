@@ -18,13 +18,10 @@
   display: inline;
 }
 
-
-
 .navbar {
   top: 143px;
   left: 0px;
   position: absolute;
-  display: flex;
   display: flex;
 }
 
@@ -156,7 +153,6 @@
 }
 
 .how-to-use{ 
-  top: 950px;
   left: 46px;
   margin-top: 100px;
   padding: 10px;
@@ -190,11 +186,6 @@
   max-width: 600px;
   margin-bottom: 20px;
 }
-
-
-
-
-
 
 
 .flag {
@@ -287,7 +278,7 @@
 }
 
 .copyright {
-  top: 5200px;
+  top: 7000px;
   left: 0px;
   position: absolute;
   display: flex;
@@ -297,7 +288,7 @@
 }
 
 .text-copyright---2025--all-rights-reserved_16-18 {
-  top: 5220px;
+  top: 7020px;
   left: 32px;
   position: absolute;
   display: flex;
@@ -554,7 +545,7 @@ button:hover{
 }
 
 .file-format {
-  top: 4850px;
+  top: 6650px;
   left: 0px;
   position: absolute;
   border: #000000;
@@ -562,7 +553,7 @@ button:hover{
 }
 
 .text-file-format-for-in-built-model-a-tab-separated-csv-or-txt-file-with-the-following-columns--year--gdp--unemployment-rate--inflation-rate--economic-growth--q-on-q-economic-growth--income-and-wealth-distribution--net-exports--govt-expenditure--tax-revenue--money-supply--interest-rate--exchange-rate-of-crawl_19-66 {
-  top: 4870px;
+  top: 6670px;
   left: 32px;
   position: absolute;
   display: flex;

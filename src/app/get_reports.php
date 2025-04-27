@@ -4,12 +4,15 @@ header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 header('Content-Type: application/octet-stream');
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://";
+$host = $_SERVER['HTTP_HOST']; 
+$baseUrl = $protocol . $host;
 
 
 $servername = "sql7.freesqldatabase.com";
-$dbusername = "sql7739145";
-$dbpassword = "NcBLLk5Kem";
-$dbname = "sql7739145";
+$dbusername = "sql7775395";
+$dbpassword = "jvGBISnIIa";
+$dbname = "sql7775395";
 
 $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
@@ -33,7 +36,7 @@ while ($row = $result->fetch_assoc()) {
     $reports[] = [
         "fileName" => $row["fileName"],
         "dateAdded" => $row["dateAdded"],
-        "downloadUrl" => "http://localhost:3000/aiapp/src/app/download_file.php?fileName=" . urlencode($row["fileName"]) . "&fileType=report"
+        "downloadUrl" => $baseUrl. "/src/app/download_file.php?fileName=" . urlencode($row["fileName"]) . "&fileType=report"
     ];
 }
 

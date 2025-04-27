@@ -4,7 +4,7 @@ import sys
 
 output_file = "historical_data.txt"
 
-dataset_path = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp/src/app/Economic_Indicators.txt"
+dataset_path = sys.argv[1]
 
 df = pd.read_csv(dataset_path, delimiter="\t")
 

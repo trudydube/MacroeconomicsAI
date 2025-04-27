@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core
 import { CommonModule } from "@angular/common";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { KeycloakService } from "keycloak-angular";
+import { environment } from "./environments/environment";
 
 @Component({
     selector: "app-historical-data-admin",
@@ -14,6 +15,8 @@ import { KeycloakService } from "keycloak-angular";
 export class HistoricalDataAdminComponent {
     historicalData: any = null;
     isLoading: boolean = false;
+    environment = environment;
+
     
       constructor(private http: HttpClient, private keycloakService: KeycloakService) {}
 
@@ -27,7 +30,7 @@ export class HistoricalDataAdminComponent {
     
         this.isLoading = true;
     
-        this.http.post<any>("http://127.0.0.1:5002/historical-data", {})
+        this.http.post<any>(`${environment.flask2ApiUrl}/historical-data`, {})
           .subscribe(response => {
     
             this.isLoading = false;
@@ -50,6 +53,7 @@ export class HistoricalDataAdminComponent {
                         taxRevenue: parseFloat(columns[9]),
                         moneySupply: parseFloat(columns[10]),
                         interestRate: parseFloat(columns[11]),
+                        rateOfCrawl: parseFloat(columns[12])
                     };
                 });
     

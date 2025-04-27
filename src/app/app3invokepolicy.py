@@ -8,7 +8,7 @@ output_file = os.path.join(os.getcwd(), "policy_output.txt")
 app = Flask(__name__)
 CORS(app)
 
-default_dataset_path = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp/src/app/Economic_Indicators.txt"
+default_dataset_path = "./Economic_Indicators.txt"
 weights_save_path = os.path.join(os.getcwd(), "uploaded_model.pkl")
 
 @app.route('/get-policies', methods=['POST'])
@@ -22,10 +22,9 @@ def generate_policies():
         dataset.save(dataset_path)
     else:
         dataset_path = default_file_path
-    
+         
     if weights:
         weights.save(weights_save_path)
-
 
     try:
         command = ['python', 'getpolicy.py', dataset_path]

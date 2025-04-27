@@ -28,16 +28,11 @@ if len(sys.argv) > 2:
 
 df = pd.read_csv(dataset_path, delimiter="\t")
 
-logging.basicConfig(level=logging.DEBUG, filename="debug.log")
-
-logging.debug(f"Received args: {sys.argv}")
-
 with open(output_file, "w") as f:
     f.write("")
 
 df = df[['Year', 'GDP ($M)', 'Unemployment Rate (%)', 'Inflation Rate (%)', 'Economic growth (%)', 'Q on Q Economic Growth (%)', 'Income and Wealth Distribution (Gini coefficient)', 'Net Exports (PM)']]
 df = df.rename(columns={'GDP ($M)': 'GDP', 'Unemployment Rate (%)': 'Unemployment Rate', 'Inflation Rate (%)': 'Inflation Rate', 'Economic growth (%)': 'Economic Growth', 'Q on Q Economic Growth (%)': 'Q on Q Economic Growth', 'Income and Wealth Distribution (Gini coefficient)': 'Income Distribution', 'Net Exports (PM)': 'Net Exports'})
-
 
 def mean_absolute_percentage_error(y_true, y_pred):
     y_true, y_pred = np.array(y_true), np.array(y_pred)
@@ -47,19 +42,15 @@ def mean_absolute_percentage_error(y_true, y_pred):
     return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
 
 
-
 # Function to forecast values for a single column
 def forecast_column(df, column_name, lag):
     model = None
     if len(sys.argv) > 2:
         model_path = sys.argv[2]
         model = joblib.load(model_path)
-    # Print data before scaling
-    # print(f"\nOriginal data being analysed for {column_name}:")
-    # print(df[[column_name]])
+    
 
     # Calculate the fluctuation margin dynamically based on average absolute difference between consecutive values
-    # This aids in predictions for highly fluctuating data
     fluctuations = df[column_name].diff().abs()
     fluctuation_margin = fluctuations.mean()
 
@@ -94,10 +85,14 @@ def forecast_column(df, column_name, lag):
 
     if model is None:
         model = Sequential()
-        model.add(Input(shape=(X_train.shape[1], 1)))  # Specifying shape of input layer
-        model.add(LSTM(units=75, return_sequences=True))  # First LSTM hidden layer
-        model.add(LSTM(units=75, return_sequences=False))  # Second LSTM hidden layer
-        model.add(Dense(units=1))  # Output layer
+        if column_name == "Net Exports":
+            model.add(Input(shape=(X_train.shape[1], 1)))  # Specifying shape of input layer
+            model.add(LSTM(units=75, return_sequences=False))  # LSTM hidden layer
+            model.add(Dense(units=1))  # Output layer
+        else:
+            model.add(Input(shape=(X_train.shape[1], 1)))  # Specifying shape of input layer
+            model.add(LSTM(units=100, return_sequences=False))  # LSTM hidden layer
+            model.add(Dense(units=1))  # Output layer
 
         # N.B. Too many layers led to overfitting during testing
 
@@ -106,7 +101,23 @@ def forecast_column(df, column_name, lag):
 
         # Training the model
         # N.B. Higher batch sizes resulted in overfitting due to longer convergence time during testing
-        model.fit(X_train, y_train, epochs=150, batch_size=6, verbose=0)
+        if column_name == "GDP":
+            model.fit(X_train, y_train, epochs=250, batch_size=8, verbose=0)
+        elif column_name == "Unemployment Rate":
+            model.fit(X_train, y_train, epochs=150, batch_size=6, verbose=0)
+        elif column_name == "Inflation Rate":
+            model.fit(X_train, y_train, epochs=350, batch_size=7, verbose=0)
+        elif column_name == "Economic Growth":
+            model.fit(X_train, y_train, epochs=300, batch_size=6, verbose=0)
+        elif column_name == "Q on Q Economic Growth":
+            model.fit(X_train, y_train, epochs=300, batch_size=14, verbose=0)
+        elif column_name == "Income Distribution":
+            model.fit(X_train, y_train, epochs=150, batch_size=6, verbose=0)
+        elif column_name == "Net Exports":
+            model.fit(X_train, y_train, epochs=350, batch_size=5, verbose=0)
+
+    years = df['Year'].values[lag:]  # Account for lag window
+    test_years = years[train_size:]
 
     # Test Predictions
     y_pred_scaled = model.predict(X_test)
@@ -115,34 +126,15 @@ def forecast_column(df, column_name, lag):
     y_pred = scaler.inverse_transform(y_pred_scaled)
     y_test_original = scaler.inverse_transform(y_test.reshape(-1, 1)) # -1 used to determine exact number of rows, 1 specifies 1 column
 
+    pred_df = pd.DataFrame({
+    'Year': test_years,
+    f'Predicted {column_name}': y_pred.flatten()
+    })
 
     mape = mean_absolute_percentage_error(y_test_original, y_pred)
     with open(output_file, "a") as f:
         f.write(f"Mean Absolute Percentage Error for {column_name}: {mape:.2f}%\n")
 
-
-
-    # Calculate accuracy considering acceptable fluctuation based on dynamic margin
-    acceptable_predictions = 0
-    for i in range(len(y_pred)):
-        # Define the fluctuation tolerance as the calculated fluctuation margin
-        actual_value = y_test_original[i][0]
-        predicted_value = y_pred[i][0]
-
-        # Adjust the fluctuation margin by multiplying by 1.5
-        adjusted_fluctuation_margin = fluctuation_margin * 2.0
-
-
-        # Checking if the predicted value is within the acceptable fluctuation margin
-        if abs(predicted_value - actual_value) <= adjusted_fluctuation_margin:
-            acceptable_predictions += 1
-
-    # Calculating accuracy as the percentage of acceptable predictions
-    accuracy = (acceptable_predictions / len(y_pred)) * 100
-
-    # Printing adjusted accuracy
-    with open(output_file, "a") as f:
-        f.write(f"Adjusted Accuracy for {column_name}: {accuracy:.2f}% within ±{adjusted_fluctuation_margin:.2f} fluctuation\n")
 
     # Forecast the next 5 years for the given column
     last_data = scaled_data[-lag:]  # Last lag years of data
@@ -157,35 +149,36 @@ def forecast_column(df, column_name, lag):
 
     # Inverse transform the predictions to back to the original scale
     future_predictions = scaler.inverse_transform(np.array(future_predictions).reshape(-1, 1))
+    prediction_years = df['Year'].values[lag:][train_size:]
     model = None
 
-    return future_predictions
+    return future_predictions, pred_df
 
 # Remove duplicate rows for GDP and Unemployment Rate (keep only one entry per year)
-# N.B. Droppinng duplpicates aided in better comprehension for the model and more accurate forecasts
+# N.B. Dropping duplicates aided in better comprehension for the model and more accurate forecasts
 df_unique = df.drop_duplicates(subset=['Year'], keep='first')
 
 # Forecast GDP with lag
 # N.B. lower lags for more linear relationships increased accuracy during training of model
-gdp_predictions = forecast_column(df_unique, 'GDP', 3)
+gdp_predictions, gdp_pred = forecast_column(df_unique, 'GDP', 3)
 
 # Forecast Unemployment Rate with lag
-unemployment_predictions = forecast_column(df_unique, 'Unemployment Rate', 1)
+unemployment_predictions, unemployment_pred = forecast_column(df_unique, 'Unemployment Rate', 1)
 
 # Forecast Inflation Rate with lag
-inflation_predictions = forecast_column(df, 'Inflation Rate', 5)
+inflation_predictions, inflation_pred = forecast_column(df, 'Inflation Rate', 8)
 
 # Forecast Economic Growth with lag
-economic_growth_predictions = forecast_column(df_unique, 'Economic Growth', 3)
+economic_growth_predictions, growth_pred = forecast_column(df_unique, 'Economic Growth', 4)
 
 # Forecast quarterly Economic Growth with lag
-quarterly_growth_predictions = forecast_column(df, 'Q on Q Economic Growth', 4)
+quarterly_growth_predictions, quarterly_growth_pred= forecast_column(df, 'Q on Q Economic Growth', 4)
 
 # Forecast Income Distribution with lag
-income_distribution_predictions = forecast_column(df_unique, 'Income Distribution', 3)
+income_distribution_predictions, income_pred = forecast_column(df_unique, 'Income Distribution', 3)
 
 # Forecast Net Exports with lag
-net_exports_predictions = forecast_column(df, 'Net Exports', 4)
+net_exports_predictions, net_exports_pred = forecast_column(df, 'Net Exports', 4)
 
 # Creating a data frame for future years and their predicted variables
 future_years = np.array(range(df['Year'].max() + 1, df['Year'].max() + 6))
@@ -209,6 +202,7 @@ plt.figure(figsize=(15, 10))
 # Plot forecasted variables alongside actual variables
 plt.subplot(3, 3, 1)
 plt.plot(df['Year'], df['GDP'], label="Actual GDP", marker="o")
+plt.plot(gdp_pred['Year'], gdp_pred['Predicted GDP'], label="Predicted GDP", marker="o", linestyle="dashed")
 plt.plot(future_df['Year'], future_df['Forecasted GDP ($M)'], label="Forecasted GDP", marker="o", linestyle="dashed")
 plt.xlabel("Year")
 plt.ylabel("GDP ($M)")
@@ -216,6 +210,7 @@ plt.legend()
 
 plt.subplot(3, 3, 2)
 plt.plot(df['Year'], df['Unemployment Rate'], label="Actual Unemployment Rate", marker="o")
+plt.plot(unemployment_pred['Year'], unemployment_pred['Predicted Unemployment Rate'], label="Predicted Unemployment Rate", marker="o", linestyle="dashed")
 plt.plot(future_df['Year'], future_df['Forecasted Unemployment Rate (%)'], label="Forecasted Unemployment Rate", marker="o", linestyle="dashed")
 plt.xlabel("Year")
 plt.ylabel("Unemployment Rate (%)")
@@ -223,6 +218,7 @@ plt.legend()
 
 plt.subplot(3, 3, 3)
 plt.plot(df['Year'], df['Inflation Rate'], label="Actual Inflation Rate", marker="o")
+plt.plot(inflation_pred['Year'], inflation_pred['Predicted Inflation Rate'], label="Predicted Inflation Rate", marker="o", linestyle="dashed")
 plt.plot(future_df['Year'], future_df['Forecasted Inflation Rate (%)'], label="Forecasted Inflation Rate", marker="o", linestyle="dashed")
 plt.xlabel("Year")
 plt.ylabel("Inflation Rate (%)")
@@ -230,6 +226,7 @@ plt.legend()
 
 plt.subplot(3, 3, 4)
 plt.plot(df['Year'], df['Economic Growth'], label="Actual Economic Growth", marker="o")
+plt.plot(growth_pred['Year'], growth_pred['Predicted Economic Growth'], label="Predicted Economic Rate", marker="o", linestyle="dashed")
 plt.plot(future_df['Year'], future_df['Forecasted Economic Growth (%)'], label="Forecasted Economic Growth", marker="o", linestyle="dashed")
 plt.xlabel("Year")
 plt.ylabel("Economic Growth (%)")
@@ -237,6 +234,7 @@ plt.legend()
 
 plt.subplot(3, 3, 5)
 plt.plot(df['Year'], df['Q on Q Economic Growth'], label="Actual Quarterly Growth", marker="o")
+plt.plot(quarterly_growth_pred['Year'], quarterly_growth_pred['Predicted Q on Q Economic Growth'], label="Predicted Quarterly Growth", marker="o", linestyle="dashed")
 plt.plot(future_df['Year'], future_df['Forecasted Quarterly Economic Growth (%)'], label="Forecasted Economic Growth", marker="o", linestyle="dashed")
 plt.xlabel("Year")
 plt.ylabel("Quarterly Economic Growth (%)")
@@ -244,6 +242,7 @@ plt.legend()
 
 plt.subplot(3, 3, 6)
 plt.plot(df['Year'], df['Income Distribution'], label="Actual Income Distribution", marker="o")
+plt.plot(income_pred['Year'], income_pred['Predicted Income Distribution'], label="Predicted Income Distribution", marker="o", linestyle="dashed")
 plt.plot(future_df['Year'], future_df['Forecasted Income Distribution (Gini Coefficient)'], label="Forecasted Income Distribution", marker="o", linestyle="dashed")
 plt.xlabel("Year")
 plt.ylabel("Income and Wealth Distribution")
@@ -251,6 +250,7 @@ plt.legend()
 
 plt.subplot(3, 3, 7)
 plt.plot(df['Year'], df['Net Exports'], label="Actual Net Exports", marker="o")
+plt.plot(net_exports_pred['Year'], net_exports_pred['Predicted Net Exports'], label="Predicted Net Exports", marker="o", linestyle="dashed")
 plt.plot(future_df['Year'], future_df['Forecasted Net Exports (PM)'], label="Forecasted Net Exports", marker="o", linestyle="dashed")
 plt.xlabel("Year")
 plt.ylabel("Net Exports (PM)")

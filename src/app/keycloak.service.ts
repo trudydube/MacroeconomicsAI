@@ -17,7 +17,6 @@ export class KeycloakOperationService {
     return this.keycloak.loadUserProfile();
   }
 
-  // New method to get the user's roles
   getUserRoles(): string[] {
     const keycloakInstance = this.keycloak.getKeycloakInstance();
     const tokenParsed = keycloakInstance.tokenParsed;

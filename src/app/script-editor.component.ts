@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { KeycloakService } from 'keycloak-angular';
 import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 import { NGX_MONACO_EDITOR_CONFIG } from 'ngx-monaco-editor-v2';
+import { environment } from './environments/environment';
 
 
 
@@ -32,7 +33,8 @@ export class ScriptEditorComponent implements OnInit{
   isLoading2: boolean = true;
   isSaving1: boolean = false;
   isSaving2: boolean = false;
-  apiUrl = 'http://localhost:3002';
+  defaultFilePath: string = "./Economic_Indicators.txt";
+  environment = environment;
 
   editorOptions = { theme: 'vs-dark', language: 'python', automaticLayout: true };
 
@@ -47,11 +49,11 @@ export class ScriptEditorComponent implements OnInit{
 
   ngOnInit() {
     this.loadScriptTrainingModel();
-    this.loadScriptInvokation();
+    this.loadScriptInvocation();
   }
 
   loadScriptTrainingModel() {
-    this.http.get<{ content1: string }>(`${this.apiUrl}/get-script-training`).subscribe(
+    this.http.get<{ content1: string }>(`${environment.nodeApiUrl}/get-script-training`).subscribe(
       (response) => {
         this.scriptContent1 = response.content1;
         this.isLoading1 = false;
@@ -63,8 +65,8 @@ export class ScriptEditorComponent implements OnInit{
     );
   }
 
-  loadScriptInvokation() {
-    this.http.get<{ content2: string }>(`${this.apiUrl}/get-script-invocation`).subscribe(
+  loadScriptInvocation() {
+    this.http.get<{ content2: string }>(`${environment.nodeApiUrl}/get-script-invocation`).subscribe(
       (response) => {
         this.scriptContent2 = response.content2;
         this.isLoading2 = false;
@@ -78,11 +80,10 @@ export class ScriptEditorComponent implements OnInit{
 
   saveScriptTrainingModel() {
     this.isSaving1 = true;
-    this.http.post(`${this.apiUrl}/save-script-training`, { content: this.scriptContent1 }).subscribe(
+    this.http.post(`${environment.nodeApiUrl}/save-script-training`, { content: this.scriptContent1 }).subscribe(
       () => {
         this.updateModel();
-        alert("Script saved successfully!");
-        this.isSaving1 = false;
+        alert("Initiating model training... Please wait")
       },
       (error) => {
         console.error("Error saving script:", error);
@@ -93,12 +94,12 @@ export class ScriptEditorComponent implements OnInit{
 
   }
 
-  saveScriptInvokation() {
+  saveScriptInvocation() {
     this.isSaving2 = true;
-    this.http.post(`${this.apiUrl}/save-script-invocation`, { content: this.scriptContent2 }).subscribe(
+    this.http.post(`${environment.nodeApiUrl}/save-script-invocation`, { content: this.scriptContent2 }).subscribe(
       () => {
-        alert("Script saved successfully!");
         this.isSaving2 = false;
+        alert("Model updated successfully!")
       },
       (error) => {
         console.error("Error saving script:", error);
@@ -110,7 +111,9 @@ export class ScriptEditorComponent implements OnInit{
   }
 
   updateModel() {
-    this.http.post<any>("http://127.0.0.1:5000/generate-policies", {})
+    const formData = new FormData();
+    formData.append("default_file_path", this.defaultFilePath)
+    this.http.post<any>(`${environment.flask0ApiUrl}/generate-policies`, formData)
         .subscribe(response => {
           if (response.success){
             console.log("Model successfully updated!");
@@ -119,9 +122,7 @@ export class ScriptEditorComponent implements OnInit{
             console.log("Failed to update model.")
             alert("Failed to update model.")
           }
-
-          this.isSaving1 = false;
-          
+          this.isSaving1 = false;          
     });
 
   }

@@ -15,10 +15,8 @@ from sklearn.metrics import r2_score, mean_squared_error
 np.random.seed(5)
 tf.random.set_seed(5)
 
-#output_file = "policy_output.txt"
 
-default_dataset_path = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp/src/app/Economic_Indicators.txt"
-dataset_path = sys.argv[1] if len(sys.argv) > 1 else default_dataset_path
+dataset_path = sys.argv[1]
 output_file = "shap_output.txt"
 
 
@@ -70,17 +68,7 @@ for target in economic_vars:
     
     # Store results
     model_performance[target] = {"R2 Score": r2, "RMSE": rmse}
-
-
-    if(target == "Net Exports (PM)"):
-        print("\nModel Performance Metrics:")
-        for target, metrics in model_performance.items():
-            print(f"{target}: R² Score = {metrics['R2 Score']:.4f}, RMSE = {metrics['RMSE']:.4f}")
-        with open(output_file, "w") as f:
-            for target, metrics in model_performance.items():
-                f.write(f"{target}: R² Score = {metrics['R2 Score']:.4f}, RMSE = {metrics['RMSE']:.4f}\n")
         
-
     # Get the SHAP explanation
     explainer = shap.TreeExplainer(model)
     shap_values = explainer.shap_values(X_test)
@@ -105,6 +93,12 @@ for economic_var, shap_table in explanation_results.items():
     # Store in policy_impact_weights
     for index, row in shap_table.iterrows():
         policy_impact_weights.loc[row["Policy Variable"], economic_var] = row["Weight"]
+
+
+# Save model performance (R2 and RMSE) to the output file
+with open(output_file, "w") as f:
+    for target, metrics in model_performance.items():
+        f.write(f"{target}: R² Score = {metrics['R2 Score']:.4f}, RMSE = {metrics['RMSE']:.4f}\n")
 
 
 print("\nPolicy Impact Weights (Derived from SHAP Values):")
@@ -152,8 +146,6 @@ shap.summary_plot(shap_values_dict['Net Exports (PM)'], X_test, feature_names=po
 plt.savefig(os.path.join(public_dir, "shap_summary_net_exports.png"))
 
 plt.close('all')  # Close all plots to free memory
-
-
 
 
 joblib.dump(trained_models, os.path.join(os.getcwd(), "random_forest_model.pkl"))

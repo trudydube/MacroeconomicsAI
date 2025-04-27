@@ -61,7 +61,6 @@
       <svg
         width="100vw"
         height="111"
-        viewBox="0 0 100vw 111"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -75,7 +74,7 @@
     <a class="text-forecasting_16-39" href="/adminforecast">Forecasting</a>
     <a class="text-scenario-analysis_16-40" href="/adminscenarioanalysis">Scenario Analysis</a>
     <a class="text-config" href="/systemconfig">System Configuration</a>
-    <a class="text-usermanagement" href="http://localhost:8080">User Management</a>
+    <a class="text-usermanagement" [href]="environment.keycloakUrl" target="_blank">User Management</a>
 
     <div class="policy-output" *ngIf="reports.length > 0">
         <h2>Previously Downloaded Reports</h2>
@@ -102,7 +101,6 @@
       <svg
         width="100vw"
         height="138"
-        viewBox="0 0 100vw 138"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >

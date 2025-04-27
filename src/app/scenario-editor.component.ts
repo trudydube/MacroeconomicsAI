@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { KeycloakService } from 'keycloak-angular';
 import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 import { NGX_MONACO_EDITOR_CONFIG } from 'ngx-monaco-editor-v2';
-
+import { environment } from './environments/environment';
 
 @Component({
   selector: 'app-scenario-editor',
@@ -28,8 +28,8 @@ export class ScenarioEditorComponent implements OnInit{
   scriptContent: string = '';
   isLoading: boolean = true;
   isSaving: boolean = false;
-  apiUrl = 'http://localhost:3002';
-  defaultFilePath: string = "C:/Users/trudy/OneDrive/Documents/CSI408/beta/aiapp/src/app/Economic_Indicators.txt";
+  defaultFilePath: string = "./Economic_Indicators.txt";
+  environment = environment;
 
   editorOptions = { theme: 'vs-dark', language: 'python', automaticLayout: true };
 
@@ -44,9 +44,7 @@ export class ScenarioEditorComponent implements OnInit{
   constructor(private http: HttpClient, private keycloakService: KeycloakService) {}
 
   public logout(): void {
-    
     this.keycloakService.logout();
-
   }
 
   ngOnInit() {
@@ -55,7 +53,7 @@ export class ScenarioEditorComponent implements OnInit{
   }
 
   loadScript() {
-    this.http.get<{ content: string }>(`${this.apiUrl}/get-scenario-script`).subscribe(
+    this.http.get<{ content: string }>(`${environment.nodeApiUrl}/get-scenario-script`).subscribe(
       (response) => {
         this.scriptContent = response.content;
         this.isLoading = false;
@@ -67,14 +65,12 @@ export class ScenarioEditorComponent implements OnInit{
     );
   }
 
-
   saveScript() {
     this.isSaving = true;
-    this.http.post(`${this.apiUrl}/save-scenario-script`, { content: this.scriptContent }).subscribe(
+    this.http.post(`${environment.nodeApiUrl}/save-scenario-script`, { content: this.scriptContent }).subscribe(
       () => {
         this.updateModel();
-        alert("Script saved successfully!");
-        this.isSaving = false;
+        alert("Initiating model training... Please wait");
       },
       (error) => {
         console.error("Error saving script:", error);
@@ -85,14 +81,12 @@ export class ScenarioEditorComponent implements OnInit{
 
   }
 
-
   updateModel() {
     const formData = new FormData();
     formData.append("default_file_path", this.defaultFilePath)
 
-    this.http.post<any>("http://127.0.0.1:5004/scenario-analysis", this.policyInputs)
+    this.http.post<any>(`${environment.flask4ApiUrl}/scenario-analysis`, this.policyInputs)
         .subscribe(response => {
-            alert("Please wait, Model is training. Do not exit this page until update is complete.");
           if (response.success){
             console.log("Model successfully updated!");
             alert("Model updated successfully!");

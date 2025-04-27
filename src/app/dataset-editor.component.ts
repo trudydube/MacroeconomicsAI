@@ -4,6 +4,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; 
 import { KeycloakService } from 'keycloak-angular';
 import { NgFor } from '@angular/common';
+import { environment } from './environments/environment';
 
 interface DatasetRow {
   year: string;
@@ -18,6 +19,7 @@ interface DatasetRow {
   taxRevenue: number;
   moneySupply: number;
   interestRate: number;
+  rateOfCrawl: number;
 }
 
 
@@ -33,8 +35,7 @@ export class DatasetEditorComponent implements OnInit{
   scriptContent: string = '';
   isLoading: boolean = true;
   isSaving: boolean = false;
-  apiUrl = 'http://localhost:3002';
-
+  environment = environment;
 
 
   constructor(private http: HttpClient, private keycloakService: KeycloakService) {}
@@ -51,7 +52,7 @@ export class DatasetEditorComponent implements OnInit{
   }
 
   loadScript() {
-    this.http.get<{ content: string }>(`${this.apiUrl}/get-dataset`).subscribe(
+    this.http.get<{ content: string }>(`${environment.nodeApiUrl}/get-dataset`).subscribe(
       (response) => {
         const lines = response.content.trim().split("\n");
         const headers = lines[0].split("\t");
@@ -70,6 +71,8 @@ export class DatasetEditorComponent implements OnInit{
             taxRevenue: parseFloat(columns[9]),
             moneySupply: parseFloat(columns[10]),
             interestRate: parseFloat(columns[11]),
+            rateOfCrawl: parseFloat(columns[12]),
+
           };
         });
         this.isLoading = false;
@@ -83,7 +86,7 @@ export class DatasetEditorComponent implements OnInit{
 
   addRow() {
     this.dataset.push({
-      year: '',
+      year: '2024',
       gdp: 0,
       unemploymentRate: 0,
       inflationRate: 0,
@@ -95,13 +98,38 @@ export class DatasetEditorComponent implements OnInit{
       taxRevenue: 0,
       moneySupply: 0,
       interestRate: 0,
+      rateOfCrawl: 0
     });
   }
 
+  deleteRow(index: number) {
+    if (confirm("Are you sure you want to delete this row?")) {
+        this.dataset.splice(index, 1);
+        this.saveScript(); 
+    }
+}
+
   saveScript() {
     this.isSaving = true;
-    const content = this.dataset.map(row => Object.values(row).join("\t")).join("\n");
-    this.http.post(`${this.apiUrl}/save-dataset`, { content }).subscribe(
+
+    const headers = [
+      "Year",
+      "GDP ($M)",
+      "Unemployment Rate (%)",
+      "Inflation Rate (%)",
+      "Economic growth (%)",
+      "Q on Q Economic Growth (%)",
+      "Income and Wealth Distribution (Gini coefficient)",
+      "Net Exports (PM)",
+      "Govt Expenditure (% of GDP)",
+      "Tax Revenue (% of GDP)",
+      "Interest Rate (%)",
+      "Money supply ($M)",
+      "Rate of crawl (%)"
+  ];
+
+  const content = [headers.join("\t"), ...this.dataset.map(row => Object.values(row).join("\t"))].join("\n");    
+  this.http.post(`${environment.nodeApiUrl}/save-dataset`, { content }).subscribe(
       () => {
         alert("Dataset saved successfully!");
         this.isSaving = false;

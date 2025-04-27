@@ -21,16 +21,16 @@ export class AuthGuard extends KeycloakAuthGuard {
       return false;
     }
 
-    // Retrieve the user's roles
+    
     const userRoles = this.keycloak.getUserRoles();
     console.log('Roles:', userRoles); 
-    const requiredRoles = route.data['roles']; // e.g., ['admin']
+    const requiredRoles = route.data['roles'];
 
     // Check if the user has the required roles
     const hasRole = requiredRoles.some((role: string) => userRoles.includes(role));
 
     if (!hasRole) {
-      this.router.navigate(['/']); // Redirect to landing page if not authorized
+      this.router.navigate(['/']); 
       return false;
     }
 

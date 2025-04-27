@@ -57,10 +57,10 @@
     <a class="text-policy-recommendation_16-38" href="/adminpolicyrec">Policy Recommendation</a>
     <a class="text-forecasting_16-39" href="/adminforecast">Forecasting</a>
     <a class="text-scenario-analysis_16-40" href="/adminscenarioanalysis">Scenario Analysis</a>
-    <a class="text-usermanagement" href="http://localhost:8080">User Management</a>
+    <a class="text-usermanagement" [href]="environment.keycloakUrl" target="_blank">User Management</a>
 
     <div class="script-editor1">
-        <h2>Edit Dataset</h2>
+        <h1>Edit Dataset</h1>
         
         <div *ngIf="isLoading">Loading script...</div>
       
@@ -68,6 +68,7 @@
         <table style="margin: 20px;">
           <thead>
               <tr>
+                  <th>Delete</th> 
                   <th>Year</th>
                   <th>GDP ($M)</th>
                   <th>Unemployment Rate (%)</th>
@@ -80,8 +81,18 @@
                   <th>Tax Revenue (% of GDP)</th>
                   <th>Money Supply ($M)</th>
                   <th>Interest Rate (%)</th>
+                  <th>Rate of Crawl (%)</th>
+
               </tr>
-              <tr *ngFor="let row of dataset">
+              <tr *ngFor="let row of dataset; let i = index">
+                <td>
+                  <button (click)="deleteRow(i)" class="delete-button">
+                      <svg width="24" height="24" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="10" fill="red" />
+                          <line x1="8" y1="12" x2="16" y2="12" stroke="white" stroke-width="2" />
+                      </svg>
+                  </button>
+              </td>
                 <td><input [(ngModel)]="row.year" /></td>
                 <td><input type="number" [(ngModel)]="row.gdp" /></td>
                 <td><input type="number" [(ngModel)]="row.unemploymentRate" /></td>
@@ -94,6 +105,7 @@
                 <td><input type="number" [(ngModel)]="row.taxRevenue" /></td>
                 <td><input type="number" [(ngModel)]="row.moneySupply" /></td>
                 <td><input type="number" [(ngModel)]="row.interestRate" /></td>
+                <td><input type="number" [(ngModel)]="row.rateOfCrawl" /></td>
             </tr>
           </thead>
         </table>

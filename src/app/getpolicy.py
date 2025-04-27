@@ -59,7 +59,7 @@ def calculate_dynamic_adjustments(latest_economy, latest_policies, target_ranges
             # Define a base adjustment factor
             base_adjustment = impact_weight * 0.5  # Added scale factor (can be refined)
 
-            # Adjustments based direct and indirect relationships between policy variables and economic variables
+            # Adjustments based on direct and indirect relationships between policy variables and economic variables
             if economic_var in ["GDP ($M)", "Inflation Rate (%)", "Economic growth (%)", "Q on Q Economic Growth (%)"] and policy_var in ["Govt Expenditure (% of GDP)", "Money supply ($M)"]:
                 if current_value < target_low:
                     adjustments[i] += base_adjustment  # Increase policy instrument
@@ -139,7 +139,6 @@ def calculate_dynamic_adjustments(latest_economy, latest_policies, target_ranges
                         predicted_economy[j] += new_value
 
 
-
             if(economic_var == "Unemployment Rate (%)"):
                 fluctuation = df_unique[economic_var].diff().abs()
                 std_dev = fluctuation.mean()
@@ -172,7 +171,6 @@ def calculate_dynamic_adjustments(latest_economy, latest_policies, target_ranges
                         predicted_economy[j] += new_value
                     else:
                         predicted_economy[j] -= new_value
-
 
 
 

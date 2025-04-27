@@ -57,7 +57,7 @@
     <a class="text-policy-recommendation_16-38" href="/adminpolicyrec">Policy Recommendation</a>
     <a class="text-forecasting_16-39" href="/adminforecast">Forecasting</a>
     <a class="text-scenario-analysis_16-40" href="/adminscenarioanalysis">Scenario Analysis</a>
-    <a class="text-usermanagement" href="http://localhost:8080">User Management</a>
+    <a class="text-usermanagement" [href]="environment.keycloakUrl" target="_blank">User Management</a>
 
     <div class="script-editor1">
         <h2>Edit and Retrain Policy Recommendation Model</h2>
@@ -71,14 +71,19 @@
         </button>
     </div>
 
+    <div *ngIf="isSaving1" class="loading-bar-container1">
+      <div class="loading-bar"></div>
+      <p class="loading-text">Please wait... This may take a few seconds</p>
+    </div>
+
     <div class="script-editor2">
-        <h2>Edit Policy Recommendation Model Invokation</h2>
+        <h2>Edit Policy Recommendation Model Invocation</h2>
         
         <div *ngIf="isLoading2">Loading script...</div>
       
         <ngx-monaco-editor *ngIf="!isLoading2" [(ngModel)]="scriptContent2" [options]="editorOptions" style="width: 80%; height: 500px;"></ngx-monaco-editor><br>
       
-        <button (click)="saveScriptInvokation()" [disabled]="isSaving2" class="savebutton">
+        <button (click)="saveScriptInvocation()" [disabled]="isSaving2" class="savebutton">
           {{ isSaving2 ? "Saving..." : "Save Changes" }}
         </button>
     </div>

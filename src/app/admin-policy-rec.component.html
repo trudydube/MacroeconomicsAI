@@ -79,7 +79,7 @@
     <a class="text-forecasting_16-39" href="/adminforecast">Forecasting</a>
     <a class="text-scenario-analysis_16-40" href="/adminscenarioanalysis">Scenario Analysis</a>
     <a class="text-config" href="/systemconfig">System Configuration</a>
-    <a class="text-usermanagement" href="http://localhost:8080">User Management</a>
+    <a class="text-usermanagement" [href]="environment.keycloakUrl" target="_blank">User Management</a>
     
 
     <div class="policy-output" *ngIf="datasets.length > 0 && !policyOutput">
@@ -229,6 +229,7 @@
   
   
   
+    <h2 style="margin-top: 1000px; margin-left: 38px; padding: 10px;">How to Use:</h2>
     <span class="how-to-use"> 
       This model will output an optimal macroeconomic policy
       recommendation based on historical economic data.<br><br> 

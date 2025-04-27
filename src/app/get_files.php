@@ -4,11 +4,14 @@ header("Access-Control-Allow-Methods: POST, OPTIONS, GET");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 header('Content-Type: application/octet-stream');
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://";
+$host = $_SERVER['HTTP_HOST']; 
+$baseUrl = $protocol . $host;
 
 $servername = "sql7.freesqldatabase.com";
-$dbusername = "sql7739145";
-$dbpassword = "NcBLLk5Kem";
-$dbname = "sql7739145";
+$dbusername = "sql7775395";
+$dbpassword = "jvGBISnIIa";
+$dbname = "sql7775395";
 
 $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
@@ -27,7 +30,7 @@ $stmt->bind_param("s", $username);
 $stmt->execute();
 $result = $stmt->get_result();
 while ($row = $result->fetch_assoc()) {
-    $row["downloadUrl"] = "http://localhost:3000/aiapp/src/app/download_file.php?fileName=" . urlencode($row["fileName"]) . "&fileType=dataset";
+    $row["downloadUrl"] = $baseUrl. "/src/app/download_file.php?fileName=" . urlencode($row["fileName"]) . "&fileType=dataset";
     $response["datasets"][] = $row;
 }
 
@@ -37,7 +40,7 @@ $stmt->bind_param("s", $username);
 $stmt->execute();
 $result = $stmt->get_result();
 while ($row = $result->fetch_assoc()) {
-    $row["downloadUrl"] = "http://localhost:3000/aiapp/src/app/download_file.php?fileName=" . urlencode($row["fileName"]) . "&fileType=model";
+    $row["downloadUrl"] = $baseUrl . "/src/app/download_file.php?fileName=" . urlencode($row["fileName"]) . "&fileType=model";
     $response["models"][] = $row;
 }
 

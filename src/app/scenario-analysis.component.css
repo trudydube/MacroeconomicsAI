@@ -1,5 +1,6 @@
 .policy-recommendation_16-4 {
     display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     background: linear-gradient(180deg, #3fc2d0 0%, #ffffff 100%);
     width: 100vw;
@@ -114,12 +115,13 @@
     background-color: #CCCCCC;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    padding: auto;
-    top: 949px;
+    padding: 20px;
+    top: 1000px;
+    margin-bottom: 20px;
     left: 46px;
-    position: absolute;
-    display: flex;
+    position: relative;
     flex-direction: column;
+    align-items: center;
     color: #000000;
     font-family: Glegoo;
     letter-spacing: 0%;
@@ -127,6 +129,10 @@
     font-weight: 400;
     z-index: 9999;
     
+  }
+
+  .policy-output table{
+    width: 90%;
   }
 
   .policy-input-container{
@@ -179,15 +185,13 @@
   }
   
   .how-to-use{ 
-    top: 1050px;
     left: 46px;
-    margin-top: 10px;
     padding: 10px;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     font-size: 50;
-    position: absolute;
-    display: flex;
+    position: relative;
     color: #000000;
     font-family: Glegoo;
     text-decoration: none;
@@ -198,7 +202,6 @@
     font-size: 20px;
     line-height: 2.0;
   }
-  
   
   
   .policy-output th, .policy-output td {
@@ -226,7 +229,6 @@
     top: 18px;
     left: 18px;
     position: absolute;
-    display: flex;
     display: flex;
   }
   
@@ -313,7 +315,7 @@
   
   
   .copyright {
-    top: 5200px;
+    top: 7000px;
     left: 0px;
     position: absolute;
     display: flex;
@@ -323,7 +325,7 @@
   }
   
   .text-copyright---2025--all-rights-reserved_16-18 {
-    top: 5220px;
+    top: 7020px;
     left: 32px;
     position: absolute;
     display: flex;
@@ -579,7 +581,7 @@
   }
   
   .file-format {
-    top: 4850px;
+    top: 6650px;
     left: 0px;
     position: absolute;
     border: #000000;
@@ -587,7 +589,7 @@
   }
   
   .text-file-format-for-in-built-model-a-tab-separated-csv-or-txt-file-with-the-following-columns--year--gdp--unemployment-rate--inflation-rate--economic-growth--q-on-q-economic-growth--income-and-wealth-distribution--net-exports--govt-expenditure--tax-revenue--money-supply--interest-rate--exchange-rate-of-crawl_19-66 {
-    top: 4870px;
+    top: 6670px;
     left: 32px;
     position: absolute;
     display: flex;

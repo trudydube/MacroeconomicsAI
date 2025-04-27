@@ -57,7 +57,7 @@
     <a class="text-policy-recommendation_16-38" href="/adminpolicyrec">Policy Recommendation</a>
     <a class="text-forecasting_16-39" href="/adminforecast">Forecasting</a>
     <a class="text-scenario-analysis_16-40" href="/adminscenarioanalysis">Scenario Analysis</a>
-    <a class="text-usermanagement" href="http://localhost:8080">User Management</a>
+    <a class="text-usermanagement" [href]="environment.keycloakUrl" target="_blank">User Management</a>
 
     <button class="generate-policy-button" style="color: #ffffff; background-color: #000000; font-size: 30px; padding: 20px; border: none; margin-left: 10px;" [routerLink]="['/scripteditor']">Edit Policy <br>Model</button>
 

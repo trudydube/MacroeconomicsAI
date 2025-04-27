@@ -5,8 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { KeycloakService } from 'keycloak-angular';
 import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 import { NGX_MONACO_EDITOR_CONFIG } from 'ngx-monaco-editor-v2';
-
-
+import { environment } from './environments/environment';
 
 @Component({
   selector: 'app-forecast-script-editor',
@@ -29,17 +28,15 @@ export class ForecastScriptEditorComponent implements OnInit{
   scriptContent: string = '';
   isLoading: boolean = true;
   isSaving: boolean = false;
-  apiUrl = 'http://localhost:3002';
+  defaultFilePath: string = "./Economic_Indicators.txt";
+  environment = environment;
 
   editorOptions = { theme: 'vs-dark', language: 'python', automaticLayout: true };
 
-
   constructor(private http: HttpClient, private keycloakService: KeycloakService) {}
 
-  public logout(): void {
-    
+  public logout(): void {  
     this.keycloakService.logout();
-
   }
 
   ngOnInit() {
@@ -48,7 +45,7 @@ export class ForecastScriptEditorComponent implements OnInit{
   }
 
   loadScript() {
-    this.http.get<{ content: string }>(`${this.apiUrl}/get-forecast-script`).subscribe(
+    this.http.get<{ content: string }>(`${environment.nodeApiUrl}/get-forecast-script`).subscribe(
       (response) => {
         this.scriptContent = response.content;
         this.isLoading = false;
@@ -60,14 +57,12 @@ export class ForecastScriptEditorComponent implements OnInit{
     );
   }
 
-
   saveScript() {
     this.isSaving = true;
-    this.http.post(`${this.apiUrl}/save-forecast-script`, { content: this.scriptContent }).subscribe(
+    this.http.post(`${environment.nodeApiUrl}/save-forecast-script`, { content: this.scriptContent }).subscribe(
       () => {
         this.updateModel();
-        alert("Script saved successfully!");
-        this.isSaving = false;
+        alert("Initiating model training... Please wait")
       },
       (error) => {
         console.error("Error saving script:", error);
@@ -75,14 +70,13 @@ export class ForecastScriptEditorComponent implements OnInit{
         this.isSaving = false;
       }
     );
-
   }
 
-
   updateModel() {
-    this.http.post<any>("http://127.0.0.1:5001/forecast", {})
+    const formData = new FormData();
+    formData.append("default_file_path", this.defaultFilePath)
+    this.http.post<any>(`${environment.flask1ApiUrl}/forecast`, formData)
         .subscribe(response => {
-            alert("Please wait, Model is training. Do not exit this page until update is complete.");
           if (response.success){
             console.log("Model successfully updated!");
             alert("Model updated successfully!");
@@ -90,11 +84,7 @@ export class ForecastScriptEditorComponent implements OnInit{
             console.log("Failed to update model.")
             alert("Failed to update model.")
           }
-          this.isSaving = false;
-          
+          this.isSaving = false;      
     });
-
   }
-  
-
 }
