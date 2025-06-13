@@ -10,6 +10,9 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 For my final year project in my BSc Computer Science degree, I made a desktop application that addresses the gap in the application of AI in macroeconomics, specifically policy making. There is very limited use of AI in analysing historical economic data and producing recommendations for the most optimal policy combination that will lead economic performance in the optimal direction. There were two separate models used for this project as discussed below.
 
+### User Manual
+[User Manual](/Botswana%20Macroeconomics%20Modeling%20User%20Manual.pdf)
+
 ### RandomForest Policy Recommender and Scenario Analysis Model
 
 The first model uses RandomForest model to analyse Botswana's historical economic data from the year 2000 up to 2023 to identify trends in the data. It integrates with SHAP eXplainable AI (XAI) to identify the relationships between policy instruments (govt expenditure, tax, money supply, interest rate, exchange rate policy) and non-policy economic variables (GDP, unemployment rate, inflation, economic growth, net exports, income and wealth distribution). Upon obtaining the weights, or importance of each policy instrument against each economic variable, the model assesses the previous quarter's performance to identify which economic indicators need to  be improved, and then makes individual adjustments based on each instrument's weight for that indicator, and the same is repeated for every variable until all have been adjusted. Thereafter the adjustments are aggragated to produce the optimal policy mix to be implemented for the next quarter, and the model applies the same weights to the latest values to also produce a prediction for how exactly the recommmended policy will influence outcome.
