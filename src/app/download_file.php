@@ -3,10 +3,10 @@ header("Access-Control-Allow-Origin: http://localhost:4200");
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
-$servername = "sql7.freesqldatabase.com";
-$dbusername = "sql7775395";
-$dbpassword = "jvGBISnIIa";
-$dbname = "sql7775395";
+$servername = "xxx-xxx-xxx";
+$dbusername = "xxx-xxx-xxx";
+$dbpassword = "xxx-xxx-xxx";
+$dbname = "xxx-xxx-xxx";
 
 $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
