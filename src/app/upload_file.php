@@ -6,10 +6,10 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 
 
-$servername = "sql7.freesqldatabase.com";
-$dbusername = "sql7775395";
-$dbpassword = "jvGBISnIIa";
-$dbname = "sql7775395";
+$servername = "xxx-xxx-xxx";
+$dbusername = "xxx-xxx-xxx";
+$dbpassword = "xxx-xxx-xxx";
+$dbname = "xxx-xxx-xxx";
 
 $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
